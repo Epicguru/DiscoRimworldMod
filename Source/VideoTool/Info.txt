@@ -1,0 +1,9 @@
+﻿
+The video tool is used to take black and white videos and compress them into a format that
+the disco floor can display.
+
+In order for this to work, the video MUST meet the following requirement:
+- The total number of pixels in each frame must not exceed 32766. This is enough for a 160x160 video.
+
+Additionally, for the video to be played back at the correct speed:
+- The framerate must be a factor of 60. For example, 15, 20, 30 or 60 are good. 24, 50 or 80 are bad.

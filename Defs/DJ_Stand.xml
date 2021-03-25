@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <ThingDef ParentName="BuildingBase">
+    <defName>DSC_DJ_Stand</defName>
+    <label>DJ Stand</label>
+    <description>A fully equipped DJ stand. All it needs is a disco floor and you're ready for a wild party!</description>
+    <thingClass>Disco.Building_DJStand</thingClass>
+    <graphicData>
+      <texPath>DSC/Buildings/ForgeIdle</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(1,1)</drawSize>
+      <!-- <drawOffset>(0,0,0.5)</drawOffset> -->
+    </graphicData>
+    <drawerType>RealtimeOnly</drawerType>
+    <category>Building</category>
+    <tickerType>Normal</tickerType>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <canOverlapZones>true</canOverlapZones>
+    <designationCategory>Joy</designationCategory>
+    <hasInteractionCell>true</hasInteractionCell>
+    <interactionCellOffset>(0,0,-1)</interactionCellOffset>
+    <drawOffscreen>true</drawOffscreen>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>PassThroughOnly</passability>
+    <blockWind>true</blockWind>
+    <castEdgeShadows>true</castEdgeShadows>
+    <pathCost>90</pathCost>
+    <size>(1,1)</size>
+    <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
+    <rotatable>true</rotatable>
+    <statBases>
+      <MaxHitPoints>150</MaxHitPoints>
+      <WorkToBuild>15000</WorkToBuild>
+      <Flammability>0.25</Flammability>
+      <Beauty>4</Beauty>
+      <Cleanliness>1</Cleanliness>
+      <Mass>30</Mass>
+    </statBases>
+    <building>
+      <ai_chillDestination>false</ai_chillDestination>
+    </building>
+    <constructionSkillPrerequisite>6</constructionSkillPrerequisite>
+    <researchPrerequisites>
+      <li>Electricity</li>
+    </researchPrerequisites>
+  </ThingDef>
+
+</Defs>

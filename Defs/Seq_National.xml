@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <Disco.SequenceDef ParentName="DSC_BDS">
+    <defName>DSC_S_National</defName>
+    <actions>
+
+      <!-- Clear -->
+      <li>
+        <type>Clear</type>
+      </li>
+
+      <!-- Repeat 10 times... -->
+      <li>
+        <type>Repeat</type>
+        <times>10</times>
+        <actions>
+
+          <!-- Fade in to the checkerboard -->
+          <li>
+            <type>Start</type>
+            <program>DSC_DP_Checkerboard_Spain</program>
+          </li>
+          <li>
+            <type>Add</type>
+            <program>DSC_DP_FadeIn</program>
+          </li>
+          <li>
+            <type>WaitLast</type>
+          </li>
+
+          <!-- Wait for a second -->
+          <li>
+            <type>Wait</type>
+            <ticks>120</ticks>
+          </li>
+
+          <!-- Fade out -->
+          <li>
+            <type>Add</type>
+            <program>DSC_DP_FadeOut</program>
+          </li>
+          <li>
+            <type>WaitLast</type>
+          </li>
+
+          <!-- Fade in stripes -->
+          <li>
+            <type>Start</type>
+            <addToMemory>true</addToMemory>
+            <program>DSC_DP_Stripes_Vert_Valencia</program>
+          </li>
+          <li>
+            <type>Add</type>
+            <program>DSC_DP_FadeIn</program>
+          </li>
+          <li>
+            <type>WaitLast</type>
+          </li>
+
+          <!-- Leave the stripes up for another second -->
+          <li>
+            <type>Wait</type>
+            <ticks>120</ticks>
+          </li>
+
+          <!-- Fade out from the stripes -->
+          <li>
+            <type>Add</type>
+            <program>DSC_DP_FadeOut</program>
+          </li>
+          <li>
+            <type>WaitLast</type>
+          </li>
+
+        </actions>
+      </li>
+      
+    </actions>
+  </Disco.SequenceDef>
+
+</Defs>

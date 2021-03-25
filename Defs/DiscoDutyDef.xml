@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <DutyDef>
+    <defName>DSC_DiscoDuty</defName>
+    <label>disco</label>
+    <hook>HighPriority</hook>
+    <thinkNode Class="ThinkNode_Priority">
+      <subNodes>
+
+        <!-- DJ exclusive -->
+        <li Class="Disco.ThinkNode_ConditionalIsDJ">
+          <subNodes>
+
+            <!-- Do DJ stuff, like stand at the DJ table -->
+            <li Class="Disco.JobGiver_StandAtDJPlatform"></li>
+
+          </subNodes>
+        </li>
+
+        <li Class="ThinkNode_ConditionalInGatheringArea">
+          <subNodes>
+            <!-- Eat -->
+            <!-- <li Class="ThinkNode_ConditionalRandom">
+              <chance>0.05</chance>
+              <subNodes>
+                <li Class="JobGiver_EatInGatheringArea" />
+              </subNodes>
+            </li> -->
+
+            <!-- Dance! -->
+            <li Class="ThinkNode_ConditionalRandom">
+              <chance>0.65</chance>
+              <subNodes>
+                <li Class="Disco.JobGiver_DanceRandom">
+                </li>
+              </subNodes>
+            </li>
+
+            <!-- Stand where you are and be socially active -->
+            <li Class="ThinkNode_ConditionalRandom">
+              <chance>0.45</chance>
+              <subNodes>
+                <li Class="JobGiver_StandAndBeSociallyActive">
+                  <ticksRange>350~750</ticksRange>
+                </li>
+              </subNodes>
+            </li>
+
+            <!-- Get joy -->
+            <li Class="ThinkNode_ConditionalRandom">
+              <chance>0.45</chance>
+              <subNodes>
+                <li Class="JobGiver_GetJoyInGatheringArea" />
+              </subNodes>
+            </li>
+
+            <!-- Wander -->
+            <li Class="JobGiver_WanderInGatheringArea">
+              <ticksBetweenWandersRange>20~100</ticksBetweenWandersRange>
+            </li>
+          </subNodes>
+        </li>
+
+        <!-- Reach the party area -->
+        <li Class="JobGiver_WanderInGatheringArea">
+          <ticksBetweenWandersRange>50~250</ticksBetweenWandersRange>
+          <locomotionUrgency>Jog</locomotionUrgency>
+        </li>
+      </subNodes>
+    </thinkNode>
+  </DutyDef>
+  
+</Defs>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <TerrainDef ParentName="TileMetalBase">
+    <defName>DSC_DiscoFloor</defName>
+    <label>disco floor</label>
+    <renderPrecedence>242</renderPrecedence>
+    <description>A disco floor. A DJ Stand must be placed on or directly adjacent to the dance floor.</description>
+    <color>(0.2, 0.2, 0.23)</color>
+    <texturePath>Terrain/Surfaces/GenericFloorTile</texturePath>
+    <constructEffect>ConstructMetal</constructEffect>
+    <researchPrerequisites>
+      <li>Electricity</li>
+    </researchPrerequisites>
+    <edgeType>Hard</edgeType>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <statBases>
+      <Beauty>8</Beauty>
+      <WorkToBuild>900</WorkToBuild>
+      <Cleanliness>0.1</Cleanliness>
+    </statBases>
+    <costList>
+      <Silver>3</Silver>
+      <Steel>4</Steel>
+    </costList>
+    <designationHotKey>Misc2</designationHotKey>
+    <constructionSkillPrerequisite>5</constructionSkillPrerequisite>
+    <tags>
+      <li>FineFloor</li>
+    </tags>
+  </TerrainDef>
+
+</Defs>

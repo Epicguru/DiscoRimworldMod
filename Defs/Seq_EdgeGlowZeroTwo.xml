@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <Disco.SequenceDef ParentName="DSC_BDS">
+    <defName>DSC_S_EdgeGlowZeroTwo</defName>
+    <actions>
+
+      <!-- Put zero two in there. -->
+      <li>
+        <type>Start</type>
+        <program>DSC_DP_ColorVideo_ZeroTwo_Small</program>
+        <addToMemory>true</addToMemory>
+      </li>   
+      <li>
+        <type>Add</type>
+        <program>DSC_DP_EdgeVolume</program>
+        <tint>(255, 0, 212, 150)</tint>
+        <blend>Add</blend>
+      </li>
+
+      <!-- Fade it in -->
+      <li>
+        <type>Add</type>
+        <program>DSC_DP_FadeIn</program>
+      </li>
+      <li>
+        <type>WaitLast</type>
+      </li>
+
+      <!-- Wait for whole song -->
+      <li>
+        <type>WaitMem</type>
+      </li>
+      
+    </actions>
+  </Disco.SequenceDef>
+
+</Defs>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <Disco.SequenceDef ParentName="DSC_BDS">
+    <defName>DSC_S_BadApple</defName>
+
+    <weight>0.45</weight>
+
+    <actions>
+
+      <!-- Clear -->
+      <li>
+        <type>Clear</type>
+      </li>
+
+      <!-- Bad apple base, put in memory -->
+      <li>
+        <type>Start</type>
+        <program>DSC_DP_Video_BadApple_Tiny</program>
+        <addToMemory>true</addToMemory>
+      </li>
+
+      <!-- Song -->
+      <li>
+        <type>Add</type>
+        <program>DSC_DP_Song_BadApple</program>
+        <blend>Ignore</blend>
+      </li>
+      <li>
+        <type>Add</type>
+        <blend>Ignore</blend>
+        <program>DSC_DP_NowPlayingMsg</program>
+        <overrides>
+          <credits>Bad Apple</credits>
+        </overrides>
+      </li>
+
+      <!-- Noisy pastel colors instead of video white -->
+      <li>
+        <type>Add</type>
+        <blend>Multiply</blend>
+        <program>DSC_DP_Noise_VeryLight</program>
+      </li>
+      <li>
+        <type>Add</type>
+        <blend>Multiply</blend>
+        <program>DSC_DP_Cycle_Pastel</program>
+      </li>
+
+      <!-- Wait for the video to end -->
+      <li>
+        <type>WaitMem</type>
+      </li>
+      
+    </actions>
+  </Disco.SequenceDef>
+
+</Defs>

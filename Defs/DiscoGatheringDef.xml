@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <GatheringDef>
+    <defName>DSC_DiscoGathering</defName>
+    <label>disco</label>
+    <randomSelectionWeight>2</randomSelectionWeight>
+    <letterTitle>Disco</letterTitle>
+    <letterText>{ORGANIZER_labelShort} will be DJing at the disco {ORGANIZER_pronoun} is organizing! Everyone who goes will gain recreation and social energy, and a lasting positive mood boost.
+Lets groove, yo!</letterText>
+    <calledOffMessage>The disco has been called off. That's wiggity wack, yo.</calledOffMessage>
+    <finishedMessage>The disco has finished.</finishedMessage>
+    <duty>DSC_DiscoDuty</duty>
+    <workerClass>Disco.GatheringWorker_Disco</workerClass>
+    <gatherSpotDefs>
+      <li>PartySpot</li>
+    </gatherSpotDefs>
+  </GatheringDef>
+
+</Defs>

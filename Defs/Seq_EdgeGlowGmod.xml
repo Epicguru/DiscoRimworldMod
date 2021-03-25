@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <Disco.SequenceDef ParentName="DSC_BDS">
+    <defName>DSC_S_EdgeGlowGmod</defName>
+    <actions>
+
+      <li>
+        <type>Start</type>
+        <blend>Ignore</blend>
+        <program>DSC_DP_NowPlayingMsg</program>
+        <overrides>
+          <credits>Hardwell - Retrograde</credits>
+        </overrides>
+      </li>
+      <li>
+        <type>Add</type>
+        <blend>Ignore</blend>
+        <program>DSC_DP_Song_Hardwell_Retrograde</program>
+        <addToMemory>true</addToMemory>
+      </li>
+
+      <!-- Add edge with noise -->
+      <li>
+        <type>Add</type>
+        <program>DSC_DP_EdgeVolume</program>
+        <tint>(255, 0, 212, 150)</tint>
+        <blend>Add</blend>
+      </li>
+      <li>
+        <type>Add</type>
+        <program>DSC_DP_Noise_VeryLight</program>
+      </li>   
+      
+      <!-- Gmod dance because I can -->
+      <li>
+        <type>Add</type>
+        <program>DSC_DP_Video_Gmod_Small</program>
+        <onlyIfMeetsSize>true</onlyIfMeetsSize>
+        <oneMinus>true</oneMinus>
+        <blend>Add</blend>
+      </li>
+
+      <!-- All w random color cycle -->
+      <li>
+        <type>Add</type>
+        <randomProgramFrom>
+          <li>DSC_DP_Cycle_Vapourwave</li>
+          <li>DSC_DP_Cycle_Radioactive</li>
+          <li>DSC_DP_Cycle_Pastel</li>
+          <li>DSC_DP_Cycle_Neon</li>
+        </randomProgramFrom>
+      </li>         
+
+      <!-- Fade it in -->
+      <li>
+        <type>Add</type>
+        <program>DSC_DP_FadeIn</program>
+      </li>
+      <li>
+        <type>WaitLast</type>
+      </li>
+
+      <!-- Wait then fade out -->
+      <li>
+        <type>WaitMem</type>
+      </li>
+      <li>
+        <type>Wait</type>
+        <ticks>60</ticks>
+      </li>
+      <li>
+        <type>Add</type>
+        <program>DSC_DP_FadeOut</program>
+      </li>
+      <li>
+        <type>WaitLast</type>
+      </li>
+      
+    </actions>
+  </Disco.SequenceDef>
+
+</Defs>

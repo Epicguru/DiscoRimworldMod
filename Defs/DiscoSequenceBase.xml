@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <Disco.SequenceDef Name="DSC_BDS" Abstract="true">
+    <label>disco sequence</label>
+    <description>If you are reading this I wish you a very pleasant day.</description>
+  </Disco.SequenceDef>
+</Defs>

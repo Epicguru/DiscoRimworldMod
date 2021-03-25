@@ -1,0 +1,615 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <Disco.ProgramDef Name="DSC_BDP" Abstract="true">
+    <label>disco program</label>
+    <description>If you are reading this I wish you a very pleasant day.</description>
+  </Disco.ProgramDef>
+
+
+  <!-- Solid color -->
+  <Disco.ProgramDef ParentName="DSC_BDP">
+    <defName>DSC_DP_Solid</defName>
+    <programClass>Disco.Programs.Solid</programClass>
+    <inputs>
+      <color>(1, 1, 1, 1)</color>
+    </inputs>
+  </Disco.ProgramDef>
+
+
+  <!-- Color cycle -->
+  <Disco.ProgramDef Name="DSC_DP_BaseCycle" ParentName="DSC_BDP" Abstract="true">
+    <programClass>Disco.Programs.ColorCycle</programClass>
+    <inputs>
+      <transitionTime>80</transitionTime>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef ParentName="DSC_DP_BaseCycle">
+    <defName>DSC_DP_Cycle_Vapourwave</defName>
+    <inputs>
+      <colors>
+          (255,113,206):
+          (1,205,254):
+          (5,255,161):
+          (185,103,255):
+          (255,251,150)
+        </colors>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef ParentName="DSC_DP_BaseCycle">
+    <defName>DSC_DP_Cycle_Sunrise</defName>
+    <inputs>
+      <colors>
+          (253,191,96):
+          (240,125,96):
+          (210,68,154):
+          (120,52,124):
+          (58,21,96)
+        </colors>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef ParentName="DSC_DP_BaseCycle">
+    <defName>DSC_DP_Cycle_Soul</defName>
+    <inputs>
+      <colors>
+          (198,50,84):
+          (236,100,73):
+          (249,153,75):
+          (251,203,90):
+          (42,162,163)
+        </colors>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef ParentName="DSC_DP_BaseCycle">
+    <defName>DSC_DP_Cycle_Radioactive</defName>
+    <inputs>
+      <colors>
+          (181,255,0):
+          (117,255,0):
+          (0,255,38):
+          (0,255,153):
+          (0,255,205)
+        </colors>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef ParentName="DSC_DP_BaseCycle">
+    <defName>DSC_DP_Cycle_Pastel</defName>
+    <inputs>
+      <colors>
+          (255,179,186):
+          (255,223,186):
+          (255,255,186):
+          (186,255,201):
+          (186,225,255)
+        </colors>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef ParentName="DSC_DP_BaseCycle">
+    <defName>DSC_DP_Cycle_Neon</defName>
+    <inputs>
+      <colors>
+          (254,0,0):
+          (253,254,2):
+          (11,255,1):
+          (1,30,254):
+          (254,0,246)
+        </colors>
+    </inputs>
+  </Disco.ProgramDef>
+
+
+  <!-- Checkerboards -->
+  <Disco.ProgramDef Name="DSC_DP_CheckerboardBase" ParentName="DSC_BDP" Abstract="true">
+    <programClass>Disco.Programs.Checkerboard</programClass>
+    <inputs>
+      <swapInterval>20</swapInterval>
+      <swapTime>10</swapTime>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef ParentName="DSC_DP_CheckerboardBase">
+    <defName>DSC_DP_Checkerboard_PurpleYellow</defName>
+    <inputs>
+      <colorA>(197, 89, 227)</colorA>
+      <colorB>(255, 248, 166)</colorB>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef ParentName="DSC_DP_CheckerboardBase">
+    <defName>DSC_DP_Checkerboard_CyanBlue</defName>
+    <inputs>
+      <colorA>(36, 255, 248)</colorA>
+      <colorB>(87, 93, 181)</colorB>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef ParentName="DSC_DP_CheckerboardBase">
+    <defName>DSC_DP_Checkerboard_Spain</defName>
+    <inputs>
+      <colorA>(189, 9, 9)</colorA>
+      <colorB>(232, 207, 16)</colorB>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef ParentName="DSC_DP_CheckerboardBase">
+    <defName>DSC_DP_Checkerboard_Grayscale</defName>
+    <inputs>
+      <colorA>(190, 190, 190)</colorA>
+      <colorB>(255, 255, 255)</colorB>
+    </inputs>
+  </Disco.ProgramDef>
+
+
+  <!-- Noise -->
+  <Disco.ProgramDef Name="DSC_DP_NoiseBase" ParentName="DSC_BDP" Abstract="true">
+    <programClass>Disco.Programs.Noise</programClass>
+    <inputs>
+      <scale>2</scale>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef ParentName="DSC_DP_NoiseBase">
+    <defName>DSC_DP_Noise_Default</defName>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef ParentName="DSC_DP_NoiseBase">
+    <defName>DSC_DP_Noise_Light</defName>
+    <inputs>
+      <add>0.2</add>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef ParentName="DSC_DP_NoiseBase">
+    <defName>DSC_DP_Noise_VeryLight</defName>
+    <inputs>
+      <add>0.55</add>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef ParentName="DSC_DP_NoiseBase">
+    <defName>DSC_DP_Noise_Smooth</defName>
+    <inputs>
+      <scale>0.15</scale>
+      <add>0.2</add>
+    </inputs>
+  </Disco.ProgramDef>
+
+
+  <!-- Edge distance -->
+  <Disco.ProgramDef Name="DSC_DP_EdgeBase" ParentName="DSC_BDP" Abstract="true">
+    <programClass>Disco.Programs.EdgeDistance</programClass>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef ParentName="DSC_DP_EdgeBase">
+    <defName>DSC_DP_EdgeDefault</defName>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef ParentName="DSC_DP_EdgeBase">
+    <defName>DSC_DP_EdgeSmall</defName>
+    <inputs>
+      <solidDistance>1</solidDistance>
+      <fadeDistance>2.2</fadeDistance>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef ParentName="DSC_DP_EdgeBase">
+    <programClass>Disco.Programs.EdgeDistanceWithVolume</programClass>
+    <defName>DSC_DP_EdgeVolume</defName>
+    <inputs>
+      <solidDistance>-5</solidDistance>
+      <fadeDistance>2.2</fadeDistance>
+      <jumpAmplitude>12</jumpAmplitude>
+    </inputs>
+  </Disco.ProgramDef>
+
+
+  <!-- Ripples -->
+  <Disco.ProgramDef Name="DSC_DP_RippleBase" ParentName="DSC_BDP" Abstract="true">
+    <programClass>Disco.Programs.Ripple</programClass>
+    <inputs>
+      <lowColor>(1, 1, 1, 0)</lowColor>
+      <highColor>(1, 1, 1, 1)</highColor>
+      <circular>true</circular>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef Name="DSC_DP_Ripple_BW_Out" ParentName="DSC_DP_RippleBase">
+    <defName>DSC_DP_Ripple_BW_Out</defName>
+    <inputs>
+      <startRadius>-2</startRadius>
+      <thickness>2</thickness>
+      <radiusChangePerTick>0.1</radiusChangePerTick>
+      <despawnAfterRadiusReaches>22</despawnAfterRadiusReaches>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef Name="DSC_DP_Ripple_BW_In" ParentName="DSC_DP_RippleBase">
+    <defName>DSC_DP_Ripple_BW_In</defName>
+    <inputs>
+      <startRadius>22</startRadius>
+      <thickness>2</thickness>
+      <radiusChangePerTick>-0.1</radiusChangePerTick>
+      <despawnAfterRadiusReaches>-2</despawnAfterRadiusReaches>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef ParentName="DSC_DP_Ripple_BW_Out">
+    <defName>DSC_DP_Ripple_BW_Out_Fast</defName>
+    <inputs>
+      <radiusChangePerTick>0.35</radiusChangePerTick>
+      <thickness>1</thickness>
+      <startRadius>3.5</startRadius>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <!-- Flying lines -->
+  <Disco.ProgramDef Name="DSC_DP_LineBase" ParentName="DSC_BDP" Abstract="true">
+    <programClass>Disco.Programs.FlyingLine</programClass>
+    <inputs>
+      <lineColor>(1, 1, 1, 1)</lineColor>
+      <defaultColor>(0, 0, 0, 0)</defaultColor>
+      <moveInterval>4</moveInterval>
+      <forwards>true</forwards>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef Name="DSC_DP_Line_BW_Hor" ParentName="DSC_DP_LineBase">
+    <defName>DSC_DP_Line_BW_Hor</defName>
+    <inputs>
+      <direction>0</direction>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef ParentName="DSC_DP_Line_BW_Hor">
+    <defName>DSC_DP_Line_BW_Hor_Back</defName>
+    <inputs>
+      <forwards>false</forwards>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef Name="DSC_DP_Line_BW_Vert" ParentName="DSC_DP_LineBase">
+    <defName>DSC_DP_Line_BW_Vert</defName>
+    <inputs>
+      <direction>1</direction>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef ParentName="DSC_DP_Line_BW_Vert">
+    <defName>DSC_DP_Line_BW_Vert_Back</defName>
+    <inputs>
+      <forwards>false</forwards>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef Name="DSC_DP_Line_BW_Diag" ParentName="DSC_DP_LineBase">
+    <defName>DSC_DP_Line_BW_Diag</defName>
+    <inputs>
+      <direction>2</direction>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef ParentName="DSC_DP_Line_BW_Diag">
+    <defName>DSC_DP_Line_BW_Diag_Back</defName>
+    <inputs>
+      <forwards>false</forwards>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef Name="DSC_DP_Line_BW_Diag_Inv" ParentName="DSC_DP_LineBase">
+    <defName>DSC_DP_Line_BW_Diag_Inv</defName>
+    <inputs>
+      <direction>3</direction>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef ParentName="DSC_DP_Line_BW_Diag_Inv">
+    <defName>DSC_DP_Line_BW_Diag_Inv_Back</defName> <!-- Def names be like: Disco disco program line black-and-white diagonal inverted backwards -->
+    <inputs>
+      <forwards>false</forwards>
+    </inputs>
+  </Disco.ProgramDef>
+
+
+  <!-- Fade In/Out -->
+  <Disco.ProgramDef ParentName="DSC_BDP">
+    <defName>DSC_DP_FadeIn</defName>
+    <programClass>Disco.Programs.Fade</programClass>
+    <inputs>
+      <duration>30</duration>
+      <fadeIn>true</fadeIn>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef ParentName="DSC_BDP">
+    <defName>DSC_DP_FadeOut</defName>
+    <programClass>Disco.Programs.Fade</programClass>
+    <inputs>
+      <duration>30</duration>
+      <fadeIn>false</fadeIn>
+    </inputs>
+  </Disco.ProgramDef>
+
+
+  <!-- Stripes -->
+  <Disco.ProgramDef Name="DSC_DP_StripesBase" ParentName="DSC_BDP" Abstract="true">
+    <programClass>Disco.Programs.Stripes</programClass>
+    <inputs>
+      <everyX>2</everyX> <!-- Every Nth tile -->
+      <shiftInterval>20</shiftInterval>
+      <shiftDirection>1</shiftDirection> <!-- 1 is forwards, -1 is backwards -->
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef Name="DSC_DP_Stripes_Hor" ParentName="DSC_DP_StripesBase" Abstract="true">
+    <inputs>
+      <horizontal>true</horizontal>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef ParentName="DSC_DP_Stripes_Hor">
+    <defName>DSC_DP_Stripes_Hor_Greyscale</defName>
+    <inputs>
+      <colors>
+        (255, 255, 255):
+        (200, 200, 200):
+        (120, 120, 120):
+        (60, 60, 60)
+      </colors>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef Name="DSC_DP_Stripes_Vert" ParentName="DSC_DP_StripesBase" Abstract="true">
+    <inputs>
+      <horizontal>false</horizontal>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef ParentName="DSC_DP_Stripes_Vert">
+    <defName>DSC_DP_Stripes_Vert_Greyscale</defName>
+    <inputs>
+      <colors>
+        (255, 255, 255):
+        (200, 200, 200):
+        (120, 120, 120):
+        (60, 60, 60)
+      </colors>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef ParentName="DSC_DP_Stripes_Vert">
+    <defName>DSC_DP_Stripes_Vert_Valencia</defName>
+    <inputs>
+      <colors>
+        (245, 223, 24):
+        (232, 23, 51):
+        (27, 148, 247)
+      </colors>
+    </inputs>
+  </Disco.ProgramDef>
+
+
+  <!-- Beat circle -->
+  <Disco.ProgramDef Name="DSC_DP_BeatCircleBase" ParentName="DSC_BDP" Abstract="true">
+    <programClass>Disco.Programs.BeatCircle</programClass>
+    <inputs>
+      <circleColor>(255, 255, 255, 255)</circleColor>
+      <otherColor>(255, 255, 255, 0)</otherColor>
+      <beatInterval>30</beatInterval>
+      <circular>true</circular>
+      <baseRadius>0.5</baseRadius>
+      <blendDistance>0.5</blendDistance>
+      <beatVelocity>0.35</beatVelocity>
+      <beatRecovery>0.86</beatRecovery>
+      <velocityRecovery>0.78</velocityRecovery>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef ParentName="DSC_DP_BeatCircleBase">
+    <defName>DSC_DP_BeatCircle_90bpm</defName>
+    <inputs>
+      <beatInterval>40</beatInterval>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef ParentName="DSC_DP_BeatCircleBase">
+    <defName>DSC_DP_BeatCircle_130bpm</defName>
+    <inputs>
+      <beatInterval>28</beatInterval>
+    </inputs>
+  </Disco.ProgramDef>
+
+
+  <!-- Video! -->
+  <Disco.ProgramDef Name="DSC_DP_VideoBase" ParentName="DSC_BDP" Abstract="true">
+    <programClass>Disco.Programs.BWVideo</programClass>
+    <inputs>
+      <whiteColor>(1, 1, 1, 1)</whiteColor>
+      <blackColor>(0, 0, 0, 0)</blackColor>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef ParentName="DSC_DP_VideoBase">
+    <defName>DSC_DP_Video_BadApple</defName>
+    <minFloorSize>(25, 25)</minFloorSize>
+    <inputs>
+      <filePath>DiscoData/BadApple.bwcv</filePath> <!-- Compressed video file path -->
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef ParentName="DSC_DP_VideoBase">
+    <defName>DSC_DP_Video_BadApple_Small</defName>
+    <minFloorSize>(20, 20)</minFloorSize>
+    <prefer>
+      <li>DSC_DP_Video_BadApple</li>
+    </prefer>
+    <inputs>
+      <filePath>DiscoData/BadApple_Small.bwcv</filePath>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef ParentName="DSC_DP_VideoBase">
+    <defName>DSC_DP_Video_BadApple_Tiny</defName>
+    <minFloorSize>(12, 12)</minFloorSize>
+    <prefer>
+      <li>DSC_DP_Video_BadApple</li>
+      <li>DSC_DP_Video_BadApple_Small</li>
+    </prefer>
+    <inputs>
+      <filePath>DiscoData/BadApple_Tiny.bwcv</filePath>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef ParentName="DSC_DP_VideoBase">
+    <defName>DSC_DP_Video_GiveYouUp</defName>
+    <minFloorSize>(30, 30)</minFloorSize>
+    <inputs>
+      <filePath>DiscoData/GiveYouUp.bwcv</filePath>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef ParentName="DSC_DP_VideoBase">
+    <defName>DSC_DP_Video_GiveYouUp_Small</defName>
+    <minFloorSize>(20, 20)</minFloorSize>
+    <prefer>
+      <li>DSC_DP_Video_GiveYouUp</li>
+    </prefer>
+    <inputs>
+      <filePath>DiscoData/GiveYouUp_Small.bwcv</filePath>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef ParentName="DSC_DP_VideoBase">
+    <defName>DSC_DP_Video_ZeroTwo</defName>
+    <minFloorSize>(25, 25)</minFloorSize>
+    <inputs>
+      <filePath>DiscoData/ZeroTwo.bwcv</filePath>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef ParentName="DSC_DP_VideoBase">
+    <defName>DSC_DP_Video_ZeroTwo_Small</defName>
+    <prefer>
+      <li>DSC_DP_Video_ZeroTwo</li>
+    </prefer>
+    <inputs>
+      <filePath>DiscoData/ZeroTwo_Small.bwcv</filePath>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef ParentName="DSC_DP_VideoBase">
+    <defName>DSC_DP_Video_TheWolf</defName>
+    <inputs>
+      <filePath>DiscoData/TheWolf.bwcv</filePath>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef ParentName="DSC_DP_VideoBase">
+    <defName>DSC_DP_Video_LoneDigger</defName>
+    <inputs>
+      <filePath>DiscoData/LoneDigger.bwcv</filePath>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef ParentName="DSC_DP_VideoBase">
+    <defName>DSC_DP_Video_Gmod</defName>
+    <inputs>
+      <filePath>DiscoData/Gmod.bwcv</filePath>
+      <times>50</times>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef ParentName="DSC_DP_VideoBase">
+    <defName>DSC_DP_Video_Gmod_Small</defName>
+    <prefer>
+      <li>DSC_DP_Video_Gmod</li>
+    </prefer>
+    <inputs>
+      <filePath>DiscoData/Gmod_Small.bwcv</filePath>
+      <times>50</times>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <!-- Sorry, you simply can't handle this -->
+  <!-- <Disco.ProgramDef ParentName="DSC_DP_VideoBase">
+    <defName>DSC_DP_Video_Shrek</defName>
+    <inputs>
+      <filePath>DiscoData/Shrek.bwcv</filePath>
+    </inputs>
+  </Disco.ProgramDef> -->
+
+
+  <!-- Color video -->
+  <Disco.ProgramDef Name="DSC_DP_ColorVideoBase" ParentName="DSC_BDP" Abstract="true">
+    <programClass>Disco.Programs.ColorVideo</programClass>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef ParentName="DSC_DP_ColorVideoBase">
+    <defName>DSC_DP_ColorVideo_ZeroTwo</defName>
+    <minFloorSize>(20, 20)</minFloorSize>
+    <inputs>
+      <filePath>DiscoData/ZeroTwo.mp4</filePath>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef ParentName="DSC_DP_ColorVideoBase">
+    <defName>DSC_DP_ColorVideo_ZeroTwo_Small</defName>
+    <prefer>
+      <li>DSC_DP_ColorVideo_ZeroTwo</li>
+    </prefer>
+    <inputs>
+      <filePath>DiscoData/ZeroTwo_Small.mp4</filePath>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef ParentName="DSC_DP_ColorVideoBase">
+    <defName>DSC_DP_ColorVideo_LoneDigger</defName>
+    <inputs>
+      <filePath>DiscoData/LoneDigger.mp4</filePath>
+    </inputs>
+  </Disco.ProgramDef>
+
+
+  <!-- Songs -->
+  <Disco.ProgramDef Name="DSC_DP_SongBase" ParentName="DSC_BDP" Abstract="true">
+    <programClass>Disco.Programs.SongPlayer</programClass>
+    <inputs>
+      <volume>1</volume>
+      <format>OGGVORBIS</format>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef ParentName="DSC_DP_SongBase">
+    <defName>DSC_DP_Song_CaramellaGirls_CaramellDansen</defName>
+    <inputs>
+      <filePath>DiscoData/CaramellDansen.ogg</filePath>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef ParentName="DSC_DP_SongBase">
+    <defName>DSC_DP_Song_Hardwell_Retrograde</defName>
+    <inputs>
+      <filePath>DiscoData/Hardwell_Retrograde.ogg</filePath>
+    </inputs>
+  </Disco.ProgramDef>
+
+  <Disco.ProgramDef ParentName="DSC_DP_SongBase">
+    <defName>DSC_DP_Song_BadApple</defName>
+    <inputs>
+      <filePath>DiscoData/BadApple.ogg</filePath>
+    </inputs>
+  </Disco.ProgramDef>
+
+
+  <!-- Shows the name of the sond and immediately exists. Use overrides to control message -->
+  <Disco.ProgramDef ParentName="DSC_BDP">
+    <defName>DSC_DP_NowPlayingMsg</defName>
+    <programClass>Disco.Programs.NowPlayingMessage</programClass>
+  </Disco.ProgramDef>
+
+</Defs>

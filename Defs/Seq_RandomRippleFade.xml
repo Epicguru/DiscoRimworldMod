@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <Disco.SequenceDef ParentName="DSC_BDS">
+    <defName>DSC_S_RandomRippleFade</defName>
+    <actions>
+
+      <!-- Noise base layer -->
+      <li>
+        <type>Start</type>
+        <program>DSC_DP_Noise_Light</program>
+      </li>
+
+      <!-- Throw in some music -->
+      <li>
+        <type>Add</type>
+        <program>DSC_DP_Song_CaramellaGirls_CaramellDansen</program>
+        <blend>Ignore</blend>
+      </li>
+      <li>
+        <type>Add</type>
+        <blend>Ignore</blend>
+        <program>DSC_DP_NowPlayingMsg</program>
+        <overrides>
+          <credits>Caramella Girls - Caramelldansen</credits>
+        </overrides>
+      </li>
+
+      <!-- With random color cycle -->
+      <li>
+        <type>Add</type>
+        <randomProgramFrom>
+          <li>DSC_DP_Cycle_Vapourwave</li>
+          <li>DSC_DP_Cycle_Sunrise</li>
+          <li>DSC_DP_Cycle_Soul</li>
+          <li>DSC_DP_Cycle_Radioactive</li>
+          <li>DSC_DP_Cycle_Pastel</li>
+          <li>DSC_DP_Cycle_Neon</li>
+        </randomProgramFrom>
+      </li>
+
+      <!-- Fade it in -->
+      <li>
+        <type>Add</type>
+        <program>DSC_DP_FadeIn</program>
+      </li>
+      <li>
+        <type>WaitLast</type>
+      </li>
+
+      <!-- Repeat 30 times... -->
+      <li>
+        <type>Repeat</type>
+        <times>30</times>
+        <actions>
+
+          <li>
+            <!-- Pick a random option: -->
+            <type>PickRandom</type>
+            <actions>
+              <!-- Wait for a second, or... -->
+              <li>
+                <type>Wait</type>
+                <ticks>60</ticks>
+                <weight>1</weight>
+              </li>
+              <!-- Do a ripple out or in -->
+              <li>
+                <type>Add</type>
+                <randomProgramFrom>
+                  <li>DSC_DP_Ripple_BW_In</li>
+                  <li>DSC_DP_Ripple_BW_Out</li>
+                </randomProgramFrom>
+                <oneMinusAlpha>true</oneMinusAlpha>
+                <weight>0.6</weight>
+              </li>
+            </actions>
+          </li>
+
+        </actions>
+      </li>
+
+      <!-- Wait then fade out -->
+      <li>
+        <type>Wait</type>
+        <ticks>120</ticks>
+      </li>
+      <li>
+        <type>Add</type>
+        <program>DSC_DP_FadeOut</program>
+      </li>
+      <li>
+        <type>WaitLast</type>
+      </li>
+      
+    </actions>
+  </Disco.SequenceDef>
+
+</Defs>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <JobDef>
+    <defName>DSC_Job_StandAtDJPlatform</defName>
+    <driverClass>Disco.JobDriver_StandAtDJPlatform</driverClass>
+    <reportString>DJing.</reportString>
+  </JobDef>
+
+  <JobDef>
+    <defName>DSC_Job_Dance_Twist</defName>
+    <driverClass>Disco.JobDriver_DanceTwist</driverClass>
+    <reportString>Doing the twist.</reportString>
+  </JobDef>
+
+  <JobDef>
+    <defName>DSC_Job_Dance_Shuffle</defName>
+    <driverClass>Disco.JobDriver_DanceShuffle</driverClass>
+    <reportString>Doing the shuffle.</reportString>
+  </JobDef>
+
+  <JobDef>
+    <defName>DSC_Job_Dance_Breakdance</defName>
+    <driverClass>Disco.JobDriver_DanceBreakdance</driverClass>
+    <reportString>Breakdancing.</reportString>
+  </JobDef>
+
+</Defs>

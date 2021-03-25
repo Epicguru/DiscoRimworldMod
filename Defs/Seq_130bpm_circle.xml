@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <Disco.SequenceDef ParentName="DSC_BDS">
+    <defName>DSC_S_130bpm_circle</defName>
+    <actions>
+
+      <!-- Fade in to solid color background -->
+      <li>
+        <type>Start</type>
+        <program>DSC_DP_Solid</program>
+        <tint>(210, 210, 210, 255)</tint>
+      </li>
+      <li>
+        <type>Add</type>
+        <program>DSC_DP_FadeIn</program>
+      </li>
+      <li>
+        <type>WaitLast</type>
+      </li>
+
+      <!-- Add a beat circle overlay -->
+      <li>
+        <type>Add</type>
+        <program>DSC_DP_BeatCircle_130bpm</program>
+        <tint>(255, 20, 20, 255)</tint>
+        <blend>Normal</blend>
+      </li>
+
+      <!-- Repeat 10 times... -->
+      <li>
+        <type>Repeat</type>
+        <times>30</times>
+        <actions>
+
+          <!-- Throw a ripple overlay that matches the beat. -->
+          <li>
+            <type>Wait</type>
+            <ticks>8</ticks>
+          </li>
+          <li>
+            <type>Add</type>
+            <program>DSC_DP_Ripple_BW_Out_Fast</program>
+            <tint>(255, 20, 20, 255)</tint>
+            <blend>Normal</blend>
+          </li>
+
+          <!-- Wait to match the bpm -->
+          <li>
+            <type>Wait</type>
+            <ticks>20</ticks>
+          </li>
+
+        </actions>
+      </li>
+
+      <!-- Wait then fade out -->
+      <li>
+        <type>Wait</type>
+        <ticks>120</ticks>
+      </li>
+      <li>
+        <type>Add</type>
+        <program>DSC_DP_FadeOut</program>
+      </li>
+      <li>
+        <type>WaitLast</type>
+      </li>
+      
+    </actions>
+  </Disco.SequenceDef>
+
+</Defs>

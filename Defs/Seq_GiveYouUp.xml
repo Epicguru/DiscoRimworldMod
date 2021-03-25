@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <Disco.SequenceDef ParentName="DSC_BDS">
+    <defName>DSC_S_GiveYouUp</defName>
+
+    <weight>0.3</weight>
+    <minFloorSize>(20, 20)</minFloorSize>
+
+    <actions>
+
+      <!-- Clear -->
+      <li>
+        <type>Clear</type>
+      </li>
+
+      <!-- Rick base, put in memory -->
+      <li>
+        <type>Start</type>
+        <program>DSC_DP_Video_GiveYouUp_Small</program>
+        <addToMemory>true</addToMemory>
+      </li>
+
+      <!-- Noisy green instead of video white -->
+      <li>
+        <type>Add</type>
+        <blend>Multiply</blend>
+        <program>DSC_DP_Noise_VeryLight</program>
+      </li>
+      <li>
+        <type>Add</type>
+        <blend>Multiply</blend>
+        <program>DSC_DP_Cycle_Radioactive</program>
+      </li>
+
+      <!-- Wait for the video to end -->
+      <li>
+        <type>WaitMem</type>
+      </li>
+      
+    </actions>
+  </Disco.SequenceDef>
+
+</Defs>

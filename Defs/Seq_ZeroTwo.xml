@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <Disco.SequenceDef ParentName="DSC_BDS">
+    <defName>DSC_S_ZeroTwo</defName>
+
+    <actions>
+
+      <!-- Clear -->
+      <li>
+        <type>Clear</type>
+      </li>
+
+      <!-- ZeroTwo, put in memory -->
+      <li>
+        <type>Start</type>
+        <program>DSC_DP_ColorVideo_ZeroTwo_Small</program>
+        <addToMemory>true</addToMemory>
+      </li>
+
+      <!-- Pink borders. -->
+      <li>
+        <type>Add</type>
+        <program>DSC_DP_EdgeSmall</program>
+        <blend>Normal</blend>
+        <tint>(255, 0, 247, 190)</tint>
+      </li>
+
+      <!-- Hide video (if loaded), wait for a bit (to give time to load video), then unhide -->
+      <li>
+        <type>Add</type>
+        <program>DSC_DP_Solid</program>
+        <addToMemory>true</addToMemory>
+        <tint>(0, 0, 0, 0)</tint>
+      </li>
+      <li>
+        <type>Wait</type>
+        <ticks>40</ticks>
+      </li>
+      <li>
+        <type>DestroyMem</type>
+      </li>
+
+      <!-- Fade in -->
+      <li>
+        <type>Add</type>
+        <program>DSC_DP_FadeIn</program>
+      </li>
+
+      <!-- Wait for the video to end -->
+      <li>
+        <type>WaitMem</type>
+      </li>
+      
+    </actions>
+  </Disco.SequenceDef>
+
+</Defs>
