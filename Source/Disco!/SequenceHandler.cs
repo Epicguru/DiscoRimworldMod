@@ -140,6 +140,42 @@ namespace Disco
                 IsDone = true;
         }
 
+        private bool AddRoot(out DiscoProgram instance, DiscoSequenceAction action)
+        {
+            instance = null;
+            var programDef = action.GetProgram(Stand.FloorBounds.Width, Stand.FloorBounds.Height);
+            if (programDef != null && action.onlyIfMeetsSize && !programDef.CanRunOn(Stand.FloorBounds.Width, Stand.FloorBounds.Height))
+                return true;
+            instance = programDef?.MakeProgram(Stand, action.overrides);
+            if (instance == null)
+                return true;
+            instance.OneMinus = action.oneMinus;
+            instance.OneMinusAlpha = action.oneMinusAlpha;
+            instance.Tint = action.Tint;
+            lastAddedProgram = instance;
+            if (action.addToMemory)
+                memory.Push(instance);
+
+            switch (action.onEndAction)
+            {
+                case OnEndAction.None:
+                    break;
+
+                case OnEndAction.EndSequence:
+                    instance.OnDisposeEvent += () =>
+                    {
+                        waitForLast = false;
+                        toWaitFor = null;
+                        ticksToWait = 0;
+                        actionQueue.Clear();
+                        Tick();
+                    };
+                    break;
+            }
+
+            return false;
+        }
+
         public virtual bool ExecuteAction(DiscoSequenceAction action)
         {
             if (action == null)
@@ -188,35 +224,15 @@ namespace Disco
                     return false;
 
                 case DiscoSequenceActionType.Start:
-                    var programDef = action.GetProgram(Stand.FloorBounds.Width, Stand.FloorBounds.Height);
-                    if (programDef != null && action.onlyIfMeetsSize && !programDef.CanRunOn(Stand.FloorBounds.Width, Stand.FloorBounds.Height))
+                    if (AddRoot(out var instance, action))
                         return true;
-                    var instance = programDef?.MakeProgram(Stand, action.overrides);
-                    if (instance == null)
-                        return true;
-                    instance.OneMinus = action.oneMinus;
-                    instance.OneMinusAlpha = action.oneMinusAlpha;
-                    instance.Tint = action.Tint;
                     Stand.SetProgramStack(instance);
-                    lastAddedProgram = instance;
-                    if (action.addToMemory)
-                        memory.Push(instance);
                     return true;
 
                 case DiscoSequenceActionType.Add:
-                    programDef = action.GetProgram(Stand.FloorBounds.Width, Stand.FloorBounds.Height);
-                    if (programDef != null && action.onlyIfMeetsSize && !programDef.CanRunOn(Stand.FloorBounds.Width, Stand.FloorBounds.Height))
+                    if (AddRoot(out instance, action))
                         return true;
-                    instance = programDef?.MakeProgram(Stand, action.overrides);
-                    if (instance == null)
-                        return true;
-                    instance.OneMinus = action.oneMinus;
-                    instance.OneMinusAlpha = action.oneMinusAlpha;
-                    instance.Tint = action.Tint;
                     Stand.AddProgramStack(instance, action.blend, action.atBottom ? 0 : (int?)null);
-                    lastAddedProgram = instance;
-                    if (action.addToMemory)
-                        memory.Push(instance);
                     return true;
 
                 case DiscoSequenceActionType.MemAdd:

@@ -52,6 +52,15 @@ namespace Disco
             var go = new GameObject("Disco! hook");
             go.AddComponent<UnityHook>();
             Log("Created Unity hook game object.");
+
+            GetSettings<Settings>();
+        }
+
+        public override string SettingsCategory() => "DSC.ModName".Translate();
+
+        public override void DoSettingsWindowContents(Rect inRect)
+        {
+            Settings.Draw(inRect);
         }
     }
 }

@@ -40,7 +40,7 @@ namespace Disco
             var lordJob = pawn.Map?.lordManager?.LordOf(pawn)?.LordJob;
             if (lordJob is not LordJob_Joinable_Disco discoLord)
             {
-                Core.Error($"Tried to give job to pawn {pawn.LabelShortCap} but that pawn does not have a lord job of type 'LordJob_Joinable_Disco'");
+                Core.Warn($"Tried to give job to pawn {pawn.LabelShortCap} but that pawn does not have a lord job of type 'LordJob_Joinable_Disco'");
                 return null;
             }
             return Toils_Goto.GotoCell(discoLord.DJStand.DancingCells.RandomElement(), PathEndMode.OnCell);

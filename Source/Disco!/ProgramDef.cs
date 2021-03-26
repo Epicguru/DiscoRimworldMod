@@ -9,10 +9,24 @@ namespace Disco
 {
     public class ProgramDef : Def
     {
+        public static IEnumerable<ProgramDef> GetAllInGroup(string group)
+        {
+            if (group == null)
+                yield break;
+
+            foreach (var item in DefDatabase<ProgramDef>.AllDefsListForReading)
+            {
+                if (item.IsInGroup(group))
+                    yield return item;
+            }
+        }
+
         public Type programClass;
-        private DiscoDict inputs = new DiscoDict();
+        public DiscoDict inputs = new DiscoDict();
         public List<ProgramDef> prefer;
         public IntVec2? minFloorSize = null;
+        public List<string> groups;
+        public float groupWeight = 1f;
 
         [XmlIgnore]
         private Dictionary<string, string> overrides;
@@ -20,6 +34,8 @@ namespace Disco
         [XmlIgnore]
         private Dictionary<string, object> parsed = new Dictionary<string, object>();
 
+        public bool IsInGroup(string group) => group != null && groups != null && groups.Contains(group);
+        
         public bool CanRunOn(int width, int height)
         {
             if (minFloorSize == null)

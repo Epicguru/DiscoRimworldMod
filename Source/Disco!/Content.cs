@@ -7,6 +7,13 @@ namespace Disco
     public static class Content
     {
         public static Graphic DiscoFloorGlowGraphic;
+        public static Texture2D StartIcon, ShuffleIcon;
+
+        static Content()
+        {
+            StartIcon = ContentFinder<Texture2D>.Get("DSC/UI/StartNow");
+            ShuffleIcon = ContentFinder<Texture2D>.Get("DSC/UI/Shuffle");
+        }
 
         internal static void LoadDiscoFloorGraphics(Building b)
         {

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Disco.Audio;
+using RimWorld;
 using UnityEngine;
 using Verse;
 
@@ -95,6 +96,9 @@ namespace Disco.Programs
                     }
                 });
             }
+
+            string msg = "DSC.NowPlaying".Translate(Def.Get("credits", "Unknown"));
+            Messages.Message(msg, MessageTypeDefOf.PositiveEvent);
         }
 
         private void FlagLoadedForClip(AudioClip clip)
@@ -115,6 +119,17 @@ namespace Disco.Programs
 
         private void UnityHook_OnPauseChange(bool paused)
         {
+            bool active = source?.Source != null && !removed;
+            if (!active)
+            {
+                if (registered)
+                {
+                    UnityHook.OnPauseChange -= UnityHook_OnPauseChange;
+                    registered = false;
+                }
+                return;
+            }
+
             source.Source.pitch = paused ? 0 : Find.TickManager.TickRateMultiplier;
         }
 

@@ -10,8 +10,7 @@ namespace Disco.Audio
 {
     public static class AudioSourceManager
     {
-        public static bool DoLowPass = true;
-        public static bool DoReverb = true;
+
 
         private static int lowPassLow = 285;
         private static int lowPassHigh = 22000;
@@ -58,12 +57,12 @@ namespace Disco.Audio
             AudioLowPassFilter lowPass = null;
             AudioReverbFilter reverb = null;
 
-            if (DoLowPass)
+            if (Settings.DoLowPass)
             {
                 lowPass = go.AddComponent<AudioLowPassFilter>();
                 lowPass.cutoffFrequency = lowPassHigh;
             }
-            if (DoReverb)
+            if (Settings.DoReverb)
             {
                 reverb = go.AddComponent<AudioReverbFilter>();
                 reverb.reverbPreset = AudioReverbPreset.Quarry;

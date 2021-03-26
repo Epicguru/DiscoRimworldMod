@@ -20,17 +20,10 @@
 
         <li Class="ThinkNode_ConditionalInGatheringArea">
           <subNodes>
-            <!-- Eat -->
-            <!-- <li Class="ThinkNode_ConditionalRandom">
-              <chance>0.05</chance>
-              <subNodes>
-                <li Class="JobGiver_EatInGatheringArea" />
-              </subNodes>
-            </li> -->
 
             <!-- Dance! -->
             <li Class="ThinkNode_ConditionalRandom">
-              <chance>0.65</chance>
+              <chance>0.88</chance>
               <subNodes>
                 <li Class="Disco.JobGiver_DanceRandom">
                 </li>
@@ -39,7 +32,7 @@
 
             <!-- Stand where you are and be socially active -->
             <li Class="ThinkNode_ConditionalRandom">
-              <chance>0.45</chance>
+              <chance>0.25</chance>
               <subNodes>
                 <li Class="JobGiver_StandAndBeSociallyActive">
                   <ticksRange>350~750</ticksRange>

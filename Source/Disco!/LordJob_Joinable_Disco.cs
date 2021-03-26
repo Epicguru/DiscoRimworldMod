@@ -26,7 +26,7 @@ namespace Disco
             this.DJStand = stand;
         }
 
-        public override string GetReport(Pawn pawn) => "RF.Disco.AtTheDisco".Translate();
+        public override string GetReport(Pawn pawn) => "DSC.AtTheDisco".Translate();
 
         protected override LordToil CreateGatheringToil(IntVec3 spot, Pawn organizer, GatheringDef gatheringDef)
         {
@@ -74,16 +74,13 @@ namespace Disco
             {
                 Pawn key = ownedPawns[index];
                 bool flag = key == organizer;
-                int num1;
-                if (data.presentForTicks.TryGetValue(key, out num1) && num1 > 0)
+                if (data.wasPresent.Contains(key))
                 {
                     if (ownedPawns[index].needs.mood != null)
                     {
                         ThoughtDef def = flag ? OrganizerThought : AttendeeThought;
-                        float num2 = 0.5f / def.stages[0].baseMoodEffect;
-                        float num3 = Mathf.Min((float)num1 / durationTicks + num2, 1f);
                         Thought_Memory newThought = (Thought_Memory)ThoughtMaker.MakeThought(def);
-                        newThought.moodPowerFactor = num3;
+                        newThought.moodPowerFactor = 3;
                         ownedPawns[index].needs.mood.thoughts.memories.TryGainMemory(newThought);
                         given++;
                     }

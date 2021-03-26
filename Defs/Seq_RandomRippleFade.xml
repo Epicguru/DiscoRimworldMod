@@ -16,26 +16,18 @@
         <program>DSC_DP_Song_CaramellaGirls_CaramellDansen</program>
         <blend>Ignore</blend>
       </li>
-      <li>
-        <type>Add</type>
-        <blend>Ignore</blend>
-        <program>DSC_DP_NowPlayingMsg</program>
-        <overrides>
-          <credits>Caramella Girls - Caramelldansen</credits>
-        </overrides>
-      </li>
 
       <!-- With random color cycle -->
       <li>
         <type>Add</type>
-        <randomProgramFrom>
+        <randomFromList>
           <li>DSC_DP_Cycle_Vapourwave</li>
           <li>DSC_DP_Cycle_Sunrise</li>
           <li>DSC_DP_Cycle_Soul</li>
           <li>DSC_DP_Cycle_Radioactive</li>
           <li>DSC_DP_Cycle_Pastel</li>
           <li>DSC_DP_Cycle_Neon</li>
-        </randomProgramFrom>
+        </randomFromList>
       </li>
 
       <!-- Fade it in -->
@@ -66,10 +58,10 @@
               <!-- Do a ripple out or in -->
               <li>
                 <type>Add</type>
-                <randomProgramFrom>
+                <randomFromList>
                   <li>DSC_DP_Ripple_BW_In</li>
                   <li>DSC_DP_Ripple_BW_Out</li>
-                </randomProgramFrom>
+                </randomFromList>
                 <oneMinusAlpha>true</oneMinusAlpha>
                 <weight>0.6</weight>
               </li>

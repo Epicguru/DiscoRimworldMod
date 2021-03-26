@@ -257,6 +257,9 @@
       <moveInterval>4</moveInterval>
       <forwards>true</forwards>
     </inputs>
+    <groups>
+      <li>FlyingLines</li>
+    </groups>
   </Disco.ProgramDef>
 
   <Disco.ProgramDef Name="DSC_DP_Line_BW_Hor" ParentName="DSC_DP_LineBase">
@@ -554,6 +557,7 @@
     <minFloorSize>(20, 20)</minFloorSize>
     <inputs>
       <filePath>DiscoData/ZeroTwo.mp4</filePath>
+      <credits>United Idol - Hai Phút Hơn</credits>
     </inputs>
   </Disco.ProgramDef>
 
@@ -564,30 +568,29 @@
     </prefer>
     <inputs>
       <filePath>DiscoData/ZeroTwo_Small.mp4</filePath>
-    </inputs>
-  </Disco.ProgramDef>
-
-  <Disco.ProgramDef ParentName="DSC_DP_ColorVideoBase">
-    <defName>DSC_DP_ColorVideo_LoneDigger</defName>
-    <inputs>
-      <filePath>DiscoData/LoneDigger.mp4</filePath>
+      <credits>United Idol - Hai Phút Hơn</credits>
     </inputs>
   </Disco.ProgramDef>
 
 
   <!-- Songs -->
   <Disco.ProgramDef Name="DSC_DP_SongBase" ParentName="DSC_BDP" Abstract="true">
+    <defName>DSC_DP_SongBase</defName>
     <programClass>Disco.Programs.SongPlayer</programClass>
     <inputs>
       <volume>1</volume>
       <format>OGGVORBIS</format>
     </inputs>
+    <groups>
+      <li>Songs</li>
+    </groups>
   </Disco.ProgramDef>
 
   <Disco.ProgramDef ParentName="DSC_DP_SongBase">
     <defName>DSC_DP_Song_CaramellaGirls_CaramellDansen</defName>
     <inputs>
       <filePath>DiscoData/CaramellDansen.ogg</filePath>
+      <credits>Caramell - Caramelldansen</credits>
     </inputs>
   </Disco.ProgramDef>
 
@@ -595,6 +598,7 @@
     <defName>DSC_DP_Song_Hardwell_Retrograde</defName>
     <inputs>
       <filePath>DiscoData/Hardwell_Retrograde.ogg</filePath>
+      <credits>Hardwell - Retrograde</credits>
     </inputs>
   </Disco.ProgramDef>
 
@@ -602,14 +606,16 @@
     <defName>DSC_DP_Song_BadApple</defName>
     <inputs>
       <filePath>DiscoData/BadApple.ogg</filePath>
+      <credits>Nomico, Masayoshi Minoshima - Bad Apple!!</credits>
     </inputs>
   </Disco.ProgramDef>
 
-
-  <!-- Shows the name of the sond and immediately exists. Use overrides to control message -->
-  <Disco.ProgramDef ParentName="DSC_BDP">
-    <defName>DSC_DP_NowPlayingMsg</defName>
-    <programClass>Disco.Programs.NowPlayingMessage</programClass>
+  <Disco.ProgramDef ParentName="DSC_DP_SongBase">
+    <defName>DSC_DP_Song_CaravanPalace_LoneDigger</defName>
+    <inputs>
+      <filePath>DiscoData/CaravanPalace_LoneDigger.ogg</filePath>
+      <credits>Caravan Palace - Lone Digger</credits>
+    </inputs>
   </Disco.ProgramDef>
 
 </Defs>

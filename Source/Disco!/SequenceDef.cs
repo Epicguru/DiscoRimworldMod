@@ -52,6 +52,12 @@ namespace Disco
         DestroyMem
     }
 
+    public enum OnEndAction
+    {
+        None,
+        EndSequence
+    }
+
     [Serializable]
     public class DiscoSequenceAction
     {
@@ -79,20 +85,28 @@ namespace Disco
         public bool addToMemory = false;
         public bool usePreferred = true;
         public bool onlyIfMeetsSize = false;
+        public OnEndAction onEndAction = OnEndAction.None;
         public float chance = 1f;
         public float weight = 1f;
 
         private ProgramDef program;
-        private List<ProgramDef> randomProgramFrom;
+        private List<ProgramDef> randomFromList;
+        private string randomFromGroup;
         private Color? tint = null;
         private bool randomTint = false;
 
         public ProgramDef GetProgram(int floorWidth, int floorHeight)
         {
-            if ((randomProgramFrom?.Count ?? 0) > 0)
+            if ((randomFromList?.Count ?? 0) > 0)
             {
-                return randomProgramFrom.RandomElement();
+                return randomFromList.RandomElement();
             }
+
+            if (randomFromGroup != null)
+            {
+                return ProgramDef.GetAllInGroup(randomFromGroup).RandomElementByWeight(item => item.groupWeight);
+            }
+
             if (program == null)
                 return null;
 

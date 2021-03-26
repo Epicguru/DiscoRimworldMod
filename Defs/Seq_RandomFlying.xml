@@ -9,18 +9,26 @@
         <type>Clear</type>
       </li>
       
+      <li>
+        <type>Add</type>
+        <blend>Ignore</blend>
+        <randomFromGroup>Songs</randomFromGroup>
+        <onEndAction>EndSequence</onEndAction>
+        <addToMemory>true</addToMemory>
+      </li>
+
       <!-- Add greyscale checker floor, add it to memory-->
       <li>
         <type>Add</type> <!-- Use Add because Start forces blend to Override -->
         <blend>Multiply</blend>
         <program>DSC_DP_Checkerboard_Grayscale</program>
         <addToMemory>true</addToMemory>
-      </li>
+      </li>      
 
       <!-- Change floor color, add a random line, wait until it ends, repeat -->
       <li>
         <type>Repeat</type>
-        <times>15</times>
+        <times>100</times>
         <actions>
           <li>
             <type>TintMem</type> <!-- The greyscale floor is stored in memory -->
@@ -31,25 +39,16 @@
             <chance>0.75</chance>
             <atBottom>true</atBottom>
             <blend>Add</blend>
-            <randomProgramFrom>
+            <randomFromList>
               <li>DSC_DP_Ripple_BW_Out</li>
               <li>DSC_DP_Ripple_BW_In</li>
-            </randomProgramFrom>
+            </randomFromList>
           </li>
           <li>
             <type>Add</type>
             <atBottom>true</atBottom>
             <blend>Add</blend>
-            <randomProgramFrom>
-              <li>DSC_DP_Line_BW_Hor</li>
-              <li>DSC_DP_Line_BW_Vert</li>
-              <li>DSC_DP_Line_BW_Hor_Back</li>
-              <li>DSC_DP_Line_BW_Vert_Back</li>
-              <li>DSC_DP_Line_BW_Diag</li>
-              <li>DSC_DP_Line_BW_Diag_Back</li>
-              <li>DSC_DP_Line_BW_Diag_Inv</li>
-              <li>DSC_DP_Line_BW_Diag_Inv_Back</li>
-            </randomProgramFrom>
+            <randomFromGroup>FlyingLines</randomFromGroup>
           </li>
           <li>
             <type>WaitLast</type>
@@ -57,17 +56,14 @@
         </actions>
       </li>
 
-      <!-- Fade out then another little pause at the end -->
+      <!-- Remove gray checkerboard -->
       <li>
-        <type>Add</type>
-        <program>DSC_DP_FadeOut</program>
+        <type>DestroyMem</type>
       </li>
+
+      <!-- Wait for song to end, if not already ended -->
       <li>
-        <type>WaitLast</type>
-      </li>
-      <li>
-        <type>Wait</type>
-        <ticks>30</ticks>
+        <type>WaitMem</type>
       </li>
     </actions>
   </Disco.SequenceDef>

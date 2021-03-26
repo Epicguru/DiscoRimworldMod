@@ -7,6 +7,8 @@ namespace Disco
 {
     public class JobDriver_StandAtDJPlatform : JobDriver
     {
+        private Building_DJStand stand;
+
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
             return true; 
@@ -14,19 +16,17 @@ namespace Disco
 
         protected override IEnumerable<Toil> MakeNewToils()
         {
-            LordJob_Joinable_Disco discoLord = null;
             var reachPlatform = Toils_Goto.GotoCell(TargetIndex.A, PathEndMode.OnCell);
             reachPlatform.finishActions ??= new List<System.Action>();
             reachPlatform.finishActions.Add(() =>
             {
                 LookTargets t = new LookTargets(reachPlatform.actor);
-                Messages.Message("RF.Disco.DJArrived".Translate(), t, MessageTypeDefOf.PositiveEvent);
+                Messages.Message("DSC.DJArrived".Translate(), t, MessageTypeDefOf.PositiveEvent);
 
                 var lordJob = pawn.Map?.lordManager?.LordOf(pawn)?.LordJob;
                 if (lordJob is LordJob_Joinable_Disco dl)
                 {
-                    discoLord = dl;
-                    var stand = discoLord.DJStand;
+                    stand = dl.DJStand;
                     stand.PickSequenceIfNull = true;
                 }
             });
@@ -44,9 +44,16 @@ namespace Disco
             toil.finishActions.Add(() =>
             {
                 Core.Log("Finished standing at DJ platform. Shutting down platform.");
-                discoLord.DJStand.PickSequenceIfNull = false;
+                stand.PickSequenceIfNull = false;
             });
             yield return toil;
+        }
+
+        public override void ExposeData()
+        {
+            base.ExposeData();
+
+            Scribe_References.Look(ref stand, "dsc_stand");
         }
     }
 }

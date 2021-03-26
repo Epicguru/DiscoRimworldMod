@@ -25,6 +25,22 @@ namespace Disco
             }
         }
 
+        public bool AnyActiveStand()
+        {
+            if (allStands == null)
+                return false;
+
+            foreach (var item in allStands)
+            {
+                if (item.DestroyedOrNull())
+                    continue;
+
+                if (item.PickSequenceIfNull)
+                    return true;
+            }
+            return false;
+        }
+
         public void Register(Building_DJStand stand)
         {
             if (!stand.DestroyedOrNull() && !allStands.Contains(stand))

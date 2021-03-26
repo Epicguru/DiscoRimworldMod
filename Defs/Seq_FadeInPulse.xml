@@ -18,10 +18,18 @@
         <ticks>120</ticks>
       </li>
 
-      <!-- Throw some lines around -->
+      <li>
+        <type>Add</type>
+        <blend>Ignore</blend>
+        <randomFromGroup>Songs</randomFromGroup>
+        <onEndAction>EndSequence</onEndAction>
+        <addToMemory>true</addToMemory>
+      </li>
+
+      <!-- Throw some ripples out -->
       <li>
         <type>Repeat</type>
-        <times>10</times>
+        <times>200</times>
         <actions>
           <li>
             <type>Add</type>
@@ -30,26 +38,16 @@
           </li>
           <li>
             <type>Wait</type>
-            <ticks>55</ticks>
+            <ticks>90</ticks>
           </li>
         </actions>
       </li>
 
-      <!-- Wait a bit before fading out -->
       <li>
-        <type>Wait</type>
-        <ticks>40</ticks>
+        <type>WaitMem</type>
       </li>
-
-      <!-- Start fade out -->
       <li>
-        <type>Add</type>
-        <program>DSC_DP_FadeOut</program>
-      </li>
-
-      <!-- Wait for the fade out to finish -->
-      <li>
-        <type>WaitLast</type>
+        <type>Clear</type>
       </li>
 
     </actions>

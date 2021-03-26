@@ -7,7 +7,11 @@
     <li>1.2</li>
   </supportedVersions>
   <url>https://github.com/Epicguru/DiscoRimworldMod</url>
-  <description>Adds a disco floor and a disco event to the game.</description>
+  <description>Adds a disco floor and a disco event to the game.
+Research Electricity to unlock dance floors and the DJ Stand: you will need both to run a disco.
+Once built, wait for a disco to trigger naturally or trigger the disco by selecting the DJ stand.
+
+You can add custom songs through the mod settings menu.</description>
   <modDependencies>
     <li>
       <packageId>brrainz.harmony</packageId>

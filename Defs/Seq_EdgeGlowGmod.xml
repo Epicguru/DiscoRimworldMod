@@ -4,18 +4,11 @@
     <defName>DSC_S_EdgeGlowGmod</defName>
     <actions>
 
+      <!-- Random song... -->
       <li>
         <type>Start</type>
         <blend>Ignore</blend>
-        <program>DSC_DP_NowPlayingMsg</program>
-        <overrides>
-          <credits>Hardwell - Retrograde</credits>
-        </overrides>
-      </li>
-      <li>
-        <type>Add</type>
-        <blend>Ignore</blend>
-        <program>DSC_DP_Song_Hardwell_Retrograde</program>
+        <randomFromGroup>Songs</randomFromGroup>
         <addToMemory>true</addToMemory>
       </li>
 
@@ -43,12 +36,12 @@
       <!-- All w random color cycle -->
       <li>
         <type>Add</type>
-        <randomProgramFrom>
+        <randomFromList>
           <li>DSC_DP_Cycle_Vapourwave</li>
           <li>DSC_DP_Cycle_Radioactive</li>
           <li>DSC_DP_Cycle_Pastel</li>
           <li>DSC_DP_Cycle_Neon</li>
-        </randomProgramFrom>
+        </randomFromList>
       </li>         
 
       <!-- Fade it in -->

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+<DSC.ModName>Disco!!</DSC.ModName>
+<DSC.NowPlaying>Now playing: {0}</DSC.NowPlaying>
+
+<DSC.Format>Detected format: {0}</DSC.Format>
+<DSC.Remove>Remove</DSC.Remove>
+<DSC.RandomChance>Random chance </DSC.RandomChance>
+<DSC.PasteFile>Paste song file or folder path</DSC.PasteFile>
+<DSC.Add>Add</DSC.Add>
+<DSC.AddSongs>Add song(s)</DSC.AddSongs>
+
+<DSC.TriggerNowLabel>Start disco</DSC.TriggerNowLabel>
+<DSC.TriggerNowDesc>Try to start a disco right now. Can only be triggered once every 10 days.</DSC.TriggerNowDesc>
+<DSC.TriggerNowDisabledCooldown>Cannot start now: has been manually triggered too recently. Wait a few days.</DSC.TriggerNowDisabledCooldown>
+<DSC.TriggerNowDisabledOther>Cannot start now: Possible causes - too much danger, not enough pawns, pawns are sleeping or drafted, disco floor too small...</DSC.TriggerNowDisabledOther>
+<DSC.ShuffleLabel>Next sequence</DSC.ShuffleLabel>
+<DSC.ShuffleDesc>Move to next sequence. This will end the current sequence and choose a random new one.
+Good if you don't like the current song/floor effects</DSC.ShuffleDesc>
+<DSC.FloorTooSmall>Dance floor is too small! Must be at least 10 tiles.</DSC.FloorTooSmall>
+<DSC.FailedToStart>Failed to trigger disco. The map's current state may be preventing a disco from being held.</DSC.FailedToStart>
+<DSC.NoFloor>Must be placed on or directly adjacent to a dance floor.</DSC.NoFloor>
+<DSC.RegisteredSongs>[Disco!] Loaded {0} custom songs.</DSC.RegisteredSongs>
+
+<DSC.DJArrived>The DJ has arrived. Lets get this part started!</DSC.DJArrived>
+<DSC.AtTheDisco>At the disco</DSC.AtTheDisco>
+
+<DSC.SET.DefaultValue>Default value: {0}</DSC.SET.DefaultValue>
+<DSC.SET.Reset>Reset all settings</DSC.SET.Reset>
+
+<DSC.SET.UseCustomVolumeLabel>Use custom volume?</DSC.SET.UseCustomVolumeLabel>
+<DSC.SET.UseCustomVolumeDesc>If true, the disco music will use the Custom Volume setting. Otherwise, the music will use the base game music volume.</DSC.SET.UseCustomVolumeDesc>
+
+<DSC.SET.CustomMusicVolumeLabel>Custom music volume</DSC.SET.CustomMusicVolumeLabel>
+<DSC.SET.CustomMusicVolumeDesc>The volume to use for disco music. Only has any effect if Use Custom Volume is enabled.
+Music volume is always affected by the Master Volume setting in Rimworld settings.</DSC.SET.CustomMusicVolumeDesc>
+
+<DSC.SET.DiscoFloorColorIntensityLabel>Disco floor intensity</DSC.SET.DiscoFloorColorIntensityLabel>
+<DSC.SET.DiscoFloorColorIntensityDesc>Controls the overall brightness of the disco floor effects.</DSC.SET.DiscoFloorColorIntensityDesc>
+
+<DSC.SET.ManualTriggerCooldownLabel>Manual trigger cooldown [days]</DSC.SET.ManualTriggerCooldownLabel>
+<DSC.SET.ManualTriggerCooldownDesc>The minumum time, in days, between manual disco activation.
+Click on the DJ stand to manually trigger a disco.</DSC.SET.ManualTriggerCooldownDesc>
+
+<DSC.SET.DoLowPassLabel>Music: Do low pass?</DSC.SET.DoLowPassLabel>
+<DSC.SET.DoLowPassDesc>Enables or disables the low-pass effect for disco music.
+The low-pass effect makes it seem like the music is being heard through a wall or from very far away (only applies when the camera moves away from the disco floor)</DSC.SET.DoLowPassDesc>
+
+<DSC.SET.DoReverbLabel>Music: Do reverb?</DSC.SET.DoReverbLabel>
+<DSC.SET.DoReverbDesc>Enables or disables the reverb effect for disco music.
+The reverb effect makes it seem like the music is being played inside a room with a slight echo.</DSC.SET.DoReverbDesc>
+
+</LanguageData>

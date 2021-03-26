@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-  <TerrainDef ParentName="TileMetalBase">
+  <TerrainDef ParentName="FloorBase">
     <defName>DSC_DiscoFloor</defName>
     <label>disco floor</label>
     <renderPrecedence>242</renderPrecedence>
@@ -21,7 +21,7 @@
     </statBases>
     <costList>
       <Silver>3</Silver>
-      <Steel>4</Steel>
+      <Steel>3</Steel>
     </costList>
     <designationHotKey>Misc2</designationHotKey>
     <constructionSkillPrerequisite>5</constructionSkillPrerequisite>

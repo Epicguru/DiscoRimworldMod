@@ -13,11 +13,13 @@
         <type>Clear</type>
       </li>
 
-      <!-- Rick base, put in memory -->
+      <!-- Rick base, repeat 50 times (will be cut off once song ends) -->
       <li>
         <type>Start</type>
         <program>DSC_DP_Video_GiveYouUp_Small</program>
-        <addToMemory>true</addToMemory>
+        <overrides>
+          <times>10</times>
+        </overrides>
       </li>
 
       <!-- Noisy green instead of video white -->
@@ -32,9 +34,19 @@
         <program>DSC_DP_Cycle_Radioactive</program>
       </li>
 
-      <!-- Wait for the video to end -->
+      <!-- Add random song -->
       <li>
-        <type>WaitMem</type>
+        <type>Add</type>
+        <blend>Ignore</blend>
+        <randomFromGroup>Songs</randomFromGroup>
+      </li>
+
+      <!-- Wait for the song to end, then quit. -->
+      <li>
+        <type>WaitLast</type>
+      </li>
+      <li>
+        <type>Clear</type>
       </li>
       
     </actions>

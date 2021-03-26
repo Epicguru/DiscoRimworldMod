@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using Disco.Audio;
+using RimWorld;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
 using UnityEngine.Video;
@@ -89,6 +90,9 @@ namespace Disco.Programs
                 audioContainer.Area = DJStand.FloorBounds;
                 audioContainer.IsPlaying = () => player != null && !removed;
                 player.SetTargetAudioSource(0, audioContainer.Source);
+
+                string msg = "DSC.NowPlaying".Translate(Def.Get("credits", "Unknown"));
+                Messages.Message(msg, MessageTypeDefOf.PositiveEvent);
             }
 
             player.isLooping = false;

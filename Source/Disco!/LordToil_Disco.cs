@@ -25,10 +25,9 @@ namespace Disco
             {
                 if (GatheringsUtility.InGatheringArea(ownedPawns[index].Position, spot, Map))
                 {
-                    ownedPawns[index].needs.joy.GainJoy(this.joyPerTick, JoyKindDefOf.Social);
-                    if (!Data.presentForTicks.ContainsKey(ownedPawns[index]))
-                        Data.presentForTicks.Add(ownedPawns[index], 0);
-                    Data.presentForTicks[ownedPawns[index]]++;
+                    ownedPawns[index].needs.joy.GainJoy(joyPerTick, JoyKindDefOf.Social);
+                    if (!Data.wasPresent.Contains(ownedPawns[index]))
+                        Data.wasPresent.Add(ownedPawns[index]);
                 }
             }
         }

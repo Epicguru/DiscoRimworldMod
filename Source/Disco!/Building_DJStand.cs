@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Disco.Programs;
+using RimWorld;
 using UnityEngine;
 using Verse;
 
@@ -73,13 +74,28 @@ namespace Disco
             closedNodes.Clear();
         }
 
-        public SequenceHandler CurrentSequence;
+        public SequenceHandler CurrentSequence
+        {
+            get
+            {
+                return _sequence;
+            }
+            set
+            {
+                if (_sequence == value)
+                    return;
+
+                SetProgramStack(null);
+                _sequence = value;
+            }
+        }
         public List<(DiscoProgram program, BlendMode mode)> ActivePrograms = new List<(DiscoProgram, BlendMode)>();
         public CellRect FloorBounds => glowGrid?.Rect ?? default;
         public IReadOnlyList<IntVec3> DancingCells => floorCells;
         public bool PickSequenceIfNull;
         public float CurrentSongAmplitude;
 
+        private int ticksSinceForceStarted = Mathf.RoundToInt(Settings.ManualTriggerCooldown * 60000) + 100;
         private readonly List<FloatMenuOption> options = new List<FloatMenuOption>();
         private readonly List<FloatMenuOption> options2 = new List<FloatMenuOption>();
         private readonly List<FloatMenuOption> options3 = new List<FloatMenuOption>();
@@ -92,6 +108,7 @@ namespace Disco
         private float[] edgeDistances;
         private float highestEdgeDistance;
         private bool runningTask;
+        private SequenceHandler _sequence;
 
         public override void PostMapInit()
         {
@@ -122,6 +139,8 @@ namespace Disco
         public override void Tick()
         {
             base.Tick();
+
+            ticksSinceForceStarted++;
 
             if (floorCells.Count >= 2 && glowGrid != null)
             {
@@ -162,6 +181,16 @@ namespace Disco
                 return;
 
             RecalculateFloor();
+        }
+
+        public IntVec3 GetGatherSpot()
+        {
+            if (floorCells == null || floorCells.Count < 10)
+                return Position;
+
+            if(FloorBounds.CenterCell.Walkable(Map))
+                return FloorBounds.CenterCell;
+            return Position;
         }
 
         public void RecalculateFloor()
@@ -447,6 +476,49 @@ namespace Disco
             foreach (var gizmo in base.GetGizmos())
                 yield return gizmo;
 
+            var worker = DiscoDefOf.DSC_DiscoGathering.Worker;
+            int cooldownTicks = Mathf.RoundToInt(Settings.ManualTriggerCooldown * 60000f);
+            bool onCooldown = ticksSinceForceStarted < cooldownTicks;
+            bool canStartNow = worker.CanExecute(Map);
+            yield return new Command_Action()
+            {
+                action = () =>
+                {
+                    bool worked = worker.TryExecute(Map);
+                    if (!worked)
+                    {
+                        Messages.Message("DSC.FailedToStart".Translate(), MessageTypeDefOf.RejectInput);
+                    }
+                    else
+                    {
+                        ticksSinceForceStarted = 0;
+                    }
+                },
+                defaultLabel = "DSC.TriggerNowLabel".Translate(),
+                defaultDesc = "DSC.TriggerNowDesc".Translate(),
+                disabled = onCooldown || !canStartNow,
+                disabledReason = onCooldown ? "DSC.TriggerNowDisabledCooldown".Translate() : "DSC.TriggerNowDisabledOther".Translate(),
+                icon = Content.StartIcon,
+                defaultIconColor = Color.yellow
+            };
+
+            if (PickSequenceIfNull)
+            {
+                yield return new Command_Action()
+                {
+                    action = () =>
+                    {
+                        CurrentSequence = null;
+                        Core.Log("Shuffling...");
+                    },
+                    icon = Content.ShuffleIcon,
+                    defaultIconColor = new Color(0.6f, 1f, 0.6f, 1f),
+                    alsoClickIfOtherInGroupClicked = false,
+                    defaultLabel = "DSC.ShuffleLabel".Translate(),
+                    defaultDesc = "DSC.ShuffleDesc".Translate()
+                };
+            }
+
             if (!Prefs.DevMode)
                 yield break;
 
@@ -456,57 +528,57 @@ namespace Disco
                 action = RecalculateFloor
             };
 
-            if (options.Count == 0)
+            options.Clear();
+            options2.Clear();
+            options3.Clear();
+            options4.Clear();
+
+            options.Add(new FloatMenuOption("None", () =>
             {
-                options.Add(new FloatMenuOption("None", () =>
+                SetProgramStack(null);
+            }));
+            foreach (var d in DefDatabase<ProgramDef>.AllDefsListForReading)
+            {
+                options.Add(new FloatMenuOption(d.defName.Replace("DSC_DP_", ""), () =>
                 {
-                    SetProgramStack(null);
+                    SetProgramStack(d.MakeProgram(this));
                 }));
-                foreach (var d in DefDatabase<ProgramDef>.AllDefsListForReading)
-                {
-                    options.Add(new FloatMenuOption(d.defName, () =>
-                    {
-                        SetProgramStack(d.MakeProgram(this));
-                    }));
-                }
             }
-            if (options3.Count == 0)
+        
+        
+            foreach (var mode in Enum.GetValues(typeof(BlendMode)))
             {
-                foreach (var mode in Enum.GetValues(typeof(BlendMode)))
+                var realMode = (BlendMode)mode;
+                options3.Add(new FloatMenuOption(realMode.ToString(), () =>
                 {
-                    var realMode = (BlendMode)mode;
-                    options3.Add(new FloatMenuOption(realMode.ToString(), () =>
-                    {
-                        AddProgramStack(tempGizmoProgram.MakeProgram(this), realMode);
-                        tempGizmoProgram = null;
-                    }));
-                }
-            }
-            if (options2.Count == 0)
-            {
-                foreach (var d in DefDatabase<ProgramDef>.AllDefsListForReading)
-                {
-                    options2.Add(new FloatMenuOption(d.defName, () =>
-                    {
-                        tempGizmoProgram = d;
-                        Find.WindowStack.Add(new FloatMenu(options3, "Select a blend mode"));
-                    }));
-                }
-            }
-            if (options4.Count == 0)
-            {
-                options4.Add(new FloatMenuOption("None", () =>
-                {
-                    CurrentSequence = null;
+                    AddProgramStack(tempGizmoProgram.MakeProgram(this), realMode);
+                    tempGizmoProgram = null;
                 }));
-                foreach (var d in DefDatabase<SequenceDef>.AllDefsListForReading)
-                {
-                    options4.Add(new FloatMenuOption(d.defName, () =>
-                    {
-                        CurrentSequence = d.CreateAndInitHandler(this);
-                    }));
-                }
             }
+        
+        
+            foreach (var d in DefDatabase<ProgramDef>.AllDefsListForReading)
+            {
+                options2.Add(new FloatMenuOption(d.defName.Replace("DSC_DP_", ""), () =>
+                {
+                    tempGizmoProgram = d;
+                    Find.WindowStack.Add(new FloatMenu(options3, "Select a blend mode"));
+                }));
+            }
+        
+        
+            options4.Add(new FloatMenuOption("None", () =>
+            {
+                CurrentSequence = null;
+            }));
+            foreach (var d in DefDatabase<SequenceDef>.AllDefsListForReading)
+            {
+                options4.Add(new FloatMenuOption(d.defName.Replace("DSC_S_", ""), () =>
+                {
+                    CurrentSequence = d.CreateAndInitHandler(this);
+                }));
+            }
+            
 
             yield return new Command_Action()
             {
@@ -547,7 +619,15 @@ namespace Disco
         public override string GetInspectString()
         {
             if (!Prefs.DevMode)
+            {
+                if (floorCells == null || floorCells.Count == 0)
+                    return "DSC.NoFloor".Translate();
+
+                if (floorCells.Count < 10)
+                    return "DSC.FloorTooSmall".Translate();
+
                 return $"{floorCells.Count} disco floor tiles. Let's groove!";
+            }
 
             str.Clear();
 

@@ -9,10 +9,19 @@
         <type>Clear</type>
       </li>
 
+      <!-- Random song -->
+      <li>
+        <type>Add</type>
+        <blend>Ignore</blend>
+        <randomFromGroup>Songs</randomFromGroup>
+        <onEndAction>EndSequence</onEndAction>
+        <addToMemory>true</addToMemory>
+      </li>
+
       <!-- Repeat 10 times... -->
       <li>
         <type>Repeat</type>
-        <times>10</times>
+        <times>100</times>
         <actions>
 
           <!-- Fade in to the checkerboard -->

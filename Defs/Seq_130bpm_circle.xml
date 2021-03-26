@@ -25,11 +25,26 @@
         <tint>(255, 20, 20, 255)</tint>
         <blend>Normal</blend>
       </li>
+      <li>
+        <type>Add</type>
+        <program>DSC_DP_EdgeVolume</program>
+        <tint>(255, 20, 20, 255)</tint>
+        <blend>Normal</blend>
+      </li>
+
+      <!-- Random song -->
+      <li>
+        <type>Add</type>
+        <blend>Ignore</blend>
+        <randomFromGroup>Songs</randomFromGroup>
+        <onEndAction>EndSequence</onEndAction>
+        <addToMemory>true</addToMemory>
+      </li>
 
       <!-- Repeat 10 times... -->
       <li>
         <type>Repeat</type>
-        <times>30</times>
+        <times>300</times>
         <actions>
 
           <!-- Throw a ripple overlay that matches the beat. -->
@@ -51,6 +66,10 @@
           </li>
 
         </actions>
+      </li>
+
+      <li>
+        <type>WaitMem</type>
       </li>
 
       <!-- Wait then fade out -->

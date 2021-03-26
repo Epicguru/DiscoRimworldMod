@@ -6,6 +6,7 @@ namespace Disco.Programs
 {
     public abstract class DiscoProgram : IDisposable
     {
+        public event Action OnDisposeEvent;
         public virtual bool UseRandomTickOffset => true;
 
         public readonly ProgramDef Def;
@@ -39,7 +40,7 @@ namespace Disco.Programs
 
         public virtual void Dispose()
         {
-
+            OnDisposeEvent?.Invoke();
         }
     }
 }

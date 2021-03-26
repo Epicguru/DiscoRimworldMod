@@ -25,14 +25,6 @@
         <program>DSC_DP_Song_BadApple</program>
         <blend>Ignore</blend>
       </li>
-      <li>
-        <type>Add</type>
-        <blend>Ignore</blend>
-        <program>DSC_DP_NowPlayingMsg</program>
-        <overrides>
-          <credits>Bad Apple</credits>
-        </overrides>
-      </li>
 
       <!-- Noisy pastel colors instead of video white -->
       <li>
