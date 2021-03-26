@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
 
-<DSC.ModName>Disco!!</DSC.ModName>
+<DSC.ModName>Disco!</DSC.ModName>
 <DSC.NowPlaying>Now playing: {0}</DSC.NowPlaying>
 
 <DSC.Format>Detected format: {0}</DSC.Format>
