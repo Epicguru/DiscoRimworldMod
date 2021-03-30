@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Verse;
 
 namespace Disco
@@ -57,6 +58,23 @@ namespace Disco
         {
             base.MapRemoved();
             Core.Log("Map removed");
+        }
+
+        public Building_DJStand GetDJStandForCell(IntVec3 pos)
+        {
+            foreach (var stand in allStands)
+            {
+                if (stand.DestroyedOrNull())
+                    continue;
+
+                var hashSet = stand.GetFloorCells();
+                if (hashSet == null)
+                    continue;
+
+                if (hashSet.Contains(pos))
+                    return stand;
+            }
+            return null;
         }
     }
 }

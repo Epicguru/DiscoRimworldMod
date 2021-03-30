@@ -63,6 +63,11 @@ namespace Disco
             return stateGraph;
         }
 
+        protected override bool ShouldBeCalledOff()
+        {
+            return base.ShouldBeCalledOff() || (DJStand?.NoPowerShutdown ?? true);
+        }
+
         protected virtual Trigger_TicksPassed GetTimeoutTrigger() => new Trigger_TicksPassed(this.durationTicks);
 
         private void ApplyOutcome(LordToil_Disco toil)
@@ -80,7 +85,7 @@ namespace Disco
                     {
                         ThoughtDef def = flag ? OrganizerThought : AttendeeThought;
                         Thought_Memory newThought = (Thought_Memory)ThoughtMaker.MakeThought(def);
-                        newThought.moodPowerFactor = 3;
+                        newThought.moodPowerFactor = 1;
                         ownedPawns[index].needs.mood.thoughts.memories.TryGainMemory(newThought);
                         given++;
                     }

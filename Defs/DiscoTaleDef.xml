@@ -37,7 +37,7 @@
       <li>
         <label>attended disco</label>
         <description>I had a great time tearing up the dance floor. It feels good to let loose!</description>
-        <baseMoodEffect>10</baseMoodEffect>
+        <baseMoodEffect>15</baseMoodEffect>
       </li>
     </stages>
   </ThoughtDef>

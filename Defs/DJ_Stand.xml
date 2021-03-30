@@ -49,6 +49,13 @@
     <researchPrerequisites>
       <li>Electricity</li>
     </researchPrerequisites>
+    <comps>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>50</basePowerConsumption>
+        <shortCircuitInRain>false</shortCircuitInRain>
+      </li>
+    </comps>
   </ThingDef>
 
 </Defs>

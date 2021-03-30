@@ -17,10 +17,13 @@
 <DSC.Apply>Apply</DSC.Apply>
 <DSC.ChangeSequenceWeightsButton>Change sequence chances...</DSC.ChangeSequenceWeightsButton>
 <DSC.ChangeSongWeightsButton>Change built-in song chances...</DSC.ChangeSongWeightsButton>
+<DSC.NoPowerWarning>DJ stand has no power! The disco will be cancelled if power is not restored soon!</DSC.NoPowerWarning>
+<DSC.NoPowerShutdown>DJ stand has no power, and it's internal battery ran out. The disco has been plunged into darkness and the dancers leave...</DSC.NoPowerShutdown>
 
 <DSC.TriggerNowLabel>Start disco</DSC.TriggerNowLabel>
 <DSC.TriggerNowDesc>Try to start a disco right now. Can only be triggered once every 10 days.</DSC.TriggerNowDesc>
 <DSC.TriggerNowDisabledCooldown>Cannot start now: has been manually triggered too recently. Wait a few days.</DSC.TriggerNowDisabledCooldown>
+<DSC.TriggerNowDisabledPower>Cannot start now: DJ stand has no power.</DSC.TriggerNowDisabledPower>
 <DSC.TriggerNowDisabledOther>Cannot start now: Possible causes - too much danger, not enough pawns, pawns are sleeping or drafted, disco floor too small...</DSC.TriggerNowDisabledOther>
 <DSC.ShuffleLabel>Next sequence</DSC.ShuffleLabel>
 <DSC.ShuffleDesc>Move to next sequence. This will end the current sequence and choose a random new one.
@@ -29,8 +32,9 @@ Good if you don't like the current song/floor effects</DSC.ShuffleDesc>
 <DSC.FailedToStart>Failed to trigger disco. The map's current state may be preventing a disco from being held.</DSC.FailedToStart>
 <DSC.NoFloor>Must be placed on or directly adjacent to a dance floor.</DSC.NoFloor>
 <DSC.RegisteredSongs>[Disco!] Loaded {0} custom songs.</DSC.RegisteredSongs>
+<DSC.NoPower>DJ stand has no power. Needs 50W when idle, {0}W when active.</DSC.NoPower>
 
-<DSC.DJArrived>The DJ has arrived. Lets get this part started!</DSC.DJArrived>
+<DSC.DJArrived>The DJ has arrived. Lets get this party started!</DSC.DJArrived>
 <DSC.AtTheDisco>At the disco</DSC.AtTheDisco>
 
 <DSC.SET.DefaultValue>Default value: {0}</DSC.SET.DefaultValue>
@@ -60,4 +64,8 @@ The reverb effect makes it seem like the music is being played inside a room wit
 
 <DSC.SET.GameSpeedAffectsMusicLabel>Game speed affects music?</DSC.SET.GameSpeedAffectsMusicLabel>
 <DSC.SET.GameSpeedAffectsMusicDesc>Should game speed affect the tempo and pitch of disco music, as well as the disco floor lights?</DSC.SET.GameSpeedAffectsMusicDesc>
+
+<DSC.SET.WattsPerFloorTileLabel>Watts per floor tile</DSC.SET.WattsPerFloorTileLabel>
+<DSC.SET.WattsPerFloorTileDesc>When the disco is active, how much power each disco floor tile will consume.</DSC.SET.WattsPerFloorTileDesc>
+
 </LanguageData>

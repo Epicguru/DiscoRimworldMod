@@ -14,14 +14,14 @@ namespace Disco
         private Color[] colors;
         private Matrix4x4[] matrices;
 
-        public DiscoFloorGlowGrid(List<IntVec3> cells)
+        public DiscoFloorGlowGrid(IReadOnlyCollection<IntVec3> cells)
         {
             ConstructFrom(cells);
         }
 
-        public void ConstructFrom(List<IntVec3> cells)
+        public void ConstructFrom(IReadOnlyCollection<IntVec3> cells)
         {
-            if (cells.NullOrEmpty())
+            if (cells == null || cells.Count == 0)
                 throw new ArgumentNullException(nameof(cells));
 
             int minX = int.MaxValue, maxX = int.MinValue;

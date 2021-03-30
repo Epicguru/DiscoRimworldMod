@@ -202,9 +202,9 @@
     <programClass>Disco.Programs.EdgeDistanceWithVolume</programClass>
     <defName>DSC_DP_EdgeVolume</defName>
     <inputs>
-      <solidDistance>-3.5</solidDistance>
-      <fadeDistance>1.2</fadeDistance>
-      <jumpAmplitude>9.5</jumpAmplitude>
+      <solidDistance>-1.75</solidDistance>
+      <fadeDistance>1.4</fadeDistance>
+      <jumpAmplitude>12.3</jumpAmplitude>
     </inputs>
   </Disco.ProgramDef>
 

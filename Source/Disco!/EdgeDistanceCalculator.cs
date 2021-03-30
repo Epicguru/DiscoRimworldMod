@@ -9,7 +9,7 @@ namespace Disco
     {
         private static object key = new object();
 
-        public float[] Run(IReadOnlyList<IntVec3> cellsRaw)
+        public float[] Run(IReadOnlyCollection<IntVec3> cellsRaw)
         {
             float[] distances = new float[cellsRaw.Count];
 

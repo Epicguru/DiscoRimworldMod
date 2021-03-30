@@ -53,17 +53,6 @@ namespace Disco
         [Setting(true)]
         public static bool GameSpeedAffectsMusic = false;
 
-        [TweakValue("_Disco!", 100, 32768)]
-        public static int DiscoMaxFloorSize = 5000;
-
-        [TweakValue("_Disco!", 0, 1)]
-        [Setting(0.8f, isPct = true)]
-        public static float DiscoFloorColorIntensity = 0.8f;
-
-        [TweakValue("_Disco!", 0, 60)]
-        [Setting(10f, min = 0, max = 60)]
-        public static float ManualTriggerCooldown = 10f;
-
         [TweakValue("_Disco!")]
         [Setting(true)]
         public static bool DoLowPass = true;
@@ -71,6 +60,21 @@ namespace Disco
         [TweakValue("_Disco!")]
         [Setting(true)]
         public static bool DoReverb = true;
+
+        [TweakValue("_Disco!", 100, 32768)]
+        public static int DiscoMaxFloorSize = 5000;
+
+        [TweakValue("_Disco!", 0, 1)]
+        [Setting(0.8f, isPct = true)]
+        public static float DiscoFloorColorIntensity = 0.8f;
+
+        [TweakValue("_Disco", 0, 10)]
+        [Setting(1f, min = 0, max = 10)]
+        public static float WattsPerFloorTile = 1f;
+
+        [TweakValue("_Disco!", 0, 60)]
+        [Setting(10f, min = 0, max = 60)]
+        public static float ManualTriggerCooldown = 10f;
 
         public static Dictionary<SequenceDef, float> sequenceWeights = new Dictionary<SequenceDef, float>();
         public static Dictionary<ProgramDef, float> builtInSongWeights = new Dictionary<ProgramDef, float>();
@@ -92,6 +96,7 @@ namespace Disco
             Scribe_Values.Look(ref DoLowPass, "doLowPass", true);
             Scribe_Values.Look(ref DoReverb, "doReverb", true);
             Scribe_Values.Look(ref GameSpeedAffectsMusic, "gameSpeedAffectsMusic", false);
+            Scribe_Values.Look(ref WattsPerFloorTile, "wattsPerFloorTile", 1f);
 
             Scribe_Collections.Look(ref customFiles, "filePaths", LookMode.Deep);
             Scribe_Collections.Look(ref sequenceWeights, "sequenceWeights", LookMode.Undefined, LookMode.Value);
@@ -446,7 +451,7 @@ namespace Disco
 
     internal class AddSongDialog : Window
     {
-        public override Vector2 InitialSize => new Vector2(550, 140);
+        public override Vector2 InitialSize => new Vector2(550, 155);
 
         public Action<string> OnAccept;
 

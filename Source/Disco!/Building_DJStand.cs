@@ -11,15 +11,22 @@ namespace Disco
 {
     public class Building_DJStand : Building
     {
+        [TweakValue("_Disco!")]
+        private static bool DebuggingMode = false;
+
+        private const int NO_POWER_WARNING = 60 * 4;
+        private const int NO_POWER_SHUTDOWN = 60 * 24;
+
         private static readonly Queue<IntVec3> openNodes = new Queue<IntVec3>(64);
         private static readonly HashSet<IntVec3> closedNodes = new HashSet<IntVec3>(64);
+        private static readonly List<IntVec3> tempDisplayCells = new List<IntVec3>(128);
 
-        public static void FloodFillDiscoFloorCells(Map map, IntVec3 startCell, int maxSize, ref List<IntVec3> cells)
+        public static void FloodFillDiscoFloorCells(Map map, IntVec3 startCell, int maxSize, ref HashSet<IntVec3> cells)
         {
             if (map == null)
                 return;
 
-            cells ??= new List<IntVec3>(64);
+            cells ??= new HashSet<IntVec3>(64);
             cells.Clear();
             openNodes.Clear();
             closedNodes.Clear();
@@ -74,6 +81,9 @@ namespace Disco
             closedNodes.Clear();
         }
 
+        public CompPowerTrader Power => _power ??= GetComp<CompPowerTrader>();
+        private CompPowerTrader _power;
+
         public SequenceHandler CurrentSequence
         {
             get
@@ -91,16 +101,17 @@ namespace Disco
         }
         public List<(DiscoProgram program, BlendMode mode)> ActivePrograms = new List<(DiscoProgram, BlendMode)>();
         public CellRect FloorBounds => glowGrid?.Rect ?? default;
-        public IReadOnlyList<IntVec3> DancingCells => floorCells;
+        public IReadOnlyCollection<IntVec3> DancingCells => floorCells;
         public bool PickSequenceIfNull;
         public float CurrentSongAmplitude;
+        public bool NoPowerShutdown = false;
 
         private int ticksSinceForceStarted = Mathf.RoundToInt(Settings.ManualTriggerCooldown * 60000) + 100;
         private readonly List<FloatMenuOption> options = new List<FloatMenuOption>();
         private readonly List<FloatMenuOption> options2 = new List<FloatMenuOption>();
         private readonly List<FloatMenuOption> options3 = new List<FloatMenuOption>();
         private readonly List<FloatMenuOption> options4 = new List<FloatMenuOption>();
-        private List<IntVec3> floorCells = new List<IntVec3>(Settings.DiscoMaxFloorSize);
+        private HashSet<IntVec3> floorCells = new HashSet<IntVec3>(Settings.DiscoMaxFloorSize);
         private int tickCounter;
         private DiscoFloorGlowGrid glowGrid;
         private MaterialPropertyBlock block;
@@ -109,6 +120,8 @@ namespace Disco
         private float highestEdgeDistance;
         private bool runningTask;
         private SequenceHandler _sequence;
+        private int scanIndex = -120;
+        private int ticksWithoutPower = 0;
 
         public override void PostMapInit()
         {
@@ -140,16 +153,40 @@ namespace Disco
         {
             base.Tick();
 
+            Power.PowerOutput = -GetTargetPowerDraw();
+            if (Power.PowerOn)
+                ticksWithoutPower = 0;
+            else
+                ticksWithoutPower++;
+
             ticksSinceForceStarted++;
+
+            if (!DebuggingMode && PickSequenceIfNull)
+            {
+                if (ticksWithoutPower == NO_POWER_WARNING)
+                {
+                    Messages.Message("DSC.NoPowerWarning".Translate(), MessageTypeDefOf.CautionInput);
+                }
+
+                if (ticksWithoutPower >= NO_POWER_SHUTDOWN)
+                {
+                    Messages.Message("DSC.NoPowerShutdown".Translate(), MessageTypeDefOf.CautionInput);
+                    ticksWithoutPower = -100;
+                    NoPowerShutdown = true;
+                }
+            }
+
+            if (!PickSequenceIfNull)
+                NoPowerShutdown = false;
 
             if (floorCells.Count >= 2 && glowGrid != null)
             {
-                if (CurrentSequence != null && !Prefs.DevMode)
+                if (CurrentSequence != null && !DebuggingMode)
                 {
                     var dj = InteractionCell.GetFirstPawn(Map);
                     if (dj == null)
                     {
-                        Core.Warn("Cancelling current sequence because there is no DJ pawn. Enable Dev Mode to disable this behaviour.");
+                        Core.Warn("Cancelling current sequence because there is no DJ pawn. Enable Debugging Mode to disable this behaviour.");
                         CurrentSequence = null;
                         PickSequenceIfNull = false;
                     }
@@ -184,11 +221,91 @@ namespace Disco
                 }
             }
 
+            // Scan for expanded floor area.
+            if (floorCells != null)
+            {
+                scanIndex++;
+                if (scanIndex >= floorCells.Count)
+                    scanIndex = 0;
+                if (scanIndex >= 0)
+                {
+                    bool needsToRefresh = ScanForNewFloor(GetFloorCell(scanIndex));
+                    if (needsToRefresh)
+                    {
+                        RecalculateFloor();
+                        scanIndex = -120;
+                    }
+                }
+            }
+
             tickCounter++;
             if (tickCounter % 120 != 0 || floorCells.Count >= 2)
                 return;
 
             RecalculateFloor();
+        }
+
+        public virtual float GetTargetPowerDraw()
+        {
+            if (!PickSequenceIfNull)
+            {
+                return 50f;
+            }
+
+            return Mathf.Max(50f, (floorCells?.Count ?? 0) * Settings.WattsPerFloorTile);
+        }
+
+        public HashSet<IntVec3> GetFloorCells()
+        {
+            return floorCells;
+        }
+
+        private IntVec3 GetFloorCell(int index)
+        {
+            if (floorCells == null)
+                return default;
+            if (index < 0 || index >= floorCells.Count)
+                return default;
+
+            int i = 0;
+            foreach (var item in floorCells)
+            {
+                if (index == i)
+                    return item;
+                i++;
+            }
+            return default;
+        }
+
+        private bool ScanForNewFloor(IntVec3 cell)
+        {
+            Map map = base.Map;
+            var comp = map.GetComponent<DiscoTracker>();
+
+            bool IsDiscoFloorAndPassable(IntVec3 pos)
+            {
+                if (!pos.InBounds(map))
+                    return false;
+
+                if (map.terrainGrid.TerrainAt(pos) != DiscoDefOf.DSC_DiscoFloor)
+                    return false;
+
+                return pos.Walkable(map);
+            }
+
+            foreach (var offset in GenAdj.AdjacentCellsAndInside)
+            {
+                IntVec3 pos = cell + offset;
+                bool isFloor = IsDiscoFloorAndPassable(pos);
+
+                if (!isFloor)
+                    continue;
+
+                var owner = comp.GetDJStandForCell(pos);
+                if (owner == null)
+                    return true;
+            }
+            return false;
         }
 
         public IntVec3 GetGatherSpot()
@@ -248,6 +365,8 @@ namespace Disco
             base.ExposeData();
 
             Scribe_Values.Look(ref PickSequenceIfNull, "rf_pickSeqIfNull");
+            Scribe_Values.Look(ref NoPowerShutdown, "rf_noPowerShutdown");
+            Scribe_Values.Look(ref ticksWithoutPower, "rf_noPowerTicks");
         }
 
         private float[] RemapEdgeDistances(float[] rawDistances, out float highest)
@@ -269,10 +388,10 @@ namespace Disco
                 forBounds[i] = -1;
 
             highest = -1;
-            for (int i = 0; i < cells.Count; i++)
+            int index = 0;
+            foreach(var cell in floorCells)
             {
-                IntVec3 cell = cells[i];
-                float rawDst = rawDistances[i];
+                float rawDst = rawDistances[index++];
 
                 IntVec3 local = cell - boundsMin;
                 int localIndex = local.x + local.z * bounds.Width;
@@ -331,7 +450,7 @@ namespace Disco
                 CurrentSongAmplitude = 0;
             }
 
-            if (CurrentSequence == null && ActivePrograms.Count > 0 && !Prefs.DevMode)
+            if (CurrentSequence == null && ActivePrograms.Count > 0 && !DebuggingMode)
             {
                 SetProgramStack(null);
                 CurrentSongAmplitude = 0;
@@ -476,7 +595,10 @@ namespace Disco
         {
             base.DrawExtraSelectionOverlays();
 
-            GenDraw.DrawFieldEdges(floorCells, Color.cyan);
+            tempDisplayCells.Clear();
+            tempDisplayCells.AddRange(floorCells);
+
+            GenDraw.DrawFieldEdges(tempDisplayCells, Color.cyan);
         }
 
         public override IEnumerable<Gizmo> GetGizmos()
@@ -488,6 +610,7 @@ namespace Disco
             int cooldownTicks = Mathf.RoundToInt(Settings.ManualTriggerCooldown * 60000f);
             bool onCooldown = ticksSinceForceStarted < cooldownTicks;
             bool canStartNow = worker.CanExecute(Map);
+            bool noPower = !Power.PowerOn;
             yield return new Command_Action()
             {
                 action = () =>
@@ -504,8 +627,8 @@ namespace Disco
                 },
                 defaultLabel = "DSC.TriggerNowLabel".Translate(),
                 defaultDesc = "DSC.TriggerNowDesc".Translate(),
-                disabled = onCooldown || !canStartNow,
-                disabledReason = onCooldown ? "DSC.TriggerNowDisabledCooldown".Translate() : "DSC.TriggerNowDisabledOther".Translate(),
+                disabled = onCooldown || !canStartNow || noPower,
+                disabledReason = noPower ? "DSC.TriggerNowDisabledPower".Translate() : onCooldown ? "DSC.TriggerNowDisabledCooldown".Translate() : "DSC.TriggerNowDisabledOther".Translate(),
                 icon = Content.StartIcon,
                 defaultIconColor = Color.yellow
             };
@@ -530,11 +653,22 @@ namespace Disco
             if (!Prefs.DevMode)
                 yield break;
 
-            yield return new Command_Action()
+            yield return new Command_Toggle()
             {
-                defaultLabel = "Recalculate floor",
-                action = RecalculateFloor
+                defaultLabel = "Toggle debugging mode",
+                defaultDesc = "In debugging mode the DJ stand will behave differently, making it easier to inspect programs and sequence.",
+                toggleAction = () =>
+                {
+                    DebuggingMode = !DebuggingMode;
+                },
+                isActive = () => DebuggingMode
             };
+
+            //yield return new Command_Action()
+            //{
+            //    defaultLabel = "Recalculate floor",
+            //    action = RecalculateFloor
+            //};
 
             options.Clear();
             options2.Clear();
@@ -634,11 +768,15 @@ namespace Disco
                 if (floorCells.Count < 10)
                     return "DSC.FloorTooSmall".Translate();
 
+                if (!Power.PowerOn)
+                    return "DSC.NoPower".Translate((Settings.WattsPerFloorTile * (floorCells?.Count ?? 0)).ToString("F1"));
+
                 return $"{floorCells.Count} disco floor tiles. Let's groove!";
             }
 
             str.Clear();
 
+            str.Append("Power: ").Append("requesting ").Append(Power.PowerOutput).Append("W, has power: ").AppendLine(Power.PowerOn ? "Yes" : "No");
             str.Append("Sequence: ").AppendLine(CurrentSequence?.Def?.defName ?? "<null>");
             str.Append("Grid bounds: ").AppendLine(FloorBounds.ToString());
             str.Append("Current volume: ").AppendLine(CurrentSongAmplitude.ToString());
@@ -653,7 +791,7 @@ namespace Disco
 
         public bool IsReadyForDiscoSimple()
         {
-            return floorCells != null && floorCells.Count >= 10;
+            return floorCells != null && floorCells.Count >= 10 && Power.PowerOn;
         }
 
         private void Register(Map overrideMap = null)
