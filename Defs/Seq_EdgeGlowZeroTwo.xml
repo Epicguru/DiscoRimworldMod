@@ -2,6 +2,7 @@
 <Defs>
   <Disco.SequenceDef ParentName="DSC_BDS">
     <defName>DSC_S_EdgeGlowZeroTwo</defName>
+    <label>[Music] ZeroTwo dance</label>
     <actions>
 
       <!-- Put zero two in there. -->

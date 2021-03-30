@@ -2,7 +2,8 @@
 <Defs>
   <Disco.SequenceDef ParentName="DSC_BDS">
     <defName>DSC_S_GiveYouUp</defName>
-
+    <label>[Music] Rickroll</label>
+    
     <weight>0.3</weight>
     <minFloorSize>(20, 20)</minFloorSize>
 

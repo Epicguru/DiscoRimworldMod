@@ -26,7 +26,24 @@ namespace Disco
         public List<ProgramDef> prefer;
         public IntVec2? minFloorSize = null;
         public List<string> groups;
-        public float groupWeight = 1f;
+
+        public float GroupWeight
+        {
+            get
+            {
+                float multi = 1f;
+                if (Settings.builtInSongWeights != null && Settings.builtInSongWeights.TryGetValue(this, out float m))
+                    multi = m;
+
+                return groupWeight * multi;
+            }
+            set
+            {
+                groupWeight = value;
+            }
+        }
+
+        private float groupWeight = 1f;
 
         [XmlIgnore]
         private Dictionary<string, string> overrides;

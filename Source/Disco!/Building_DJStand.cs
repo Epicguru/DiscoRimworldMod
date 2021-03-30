@@ -163,12 +163,20 @@ namespace Disco
                 {
                     int w = FloorBounds.Width;
                     int h = FloorBounds.Height;
-                    CurrentSequence = DefDatabase<SequenceDef>.AllDefsListForReading.RandomElementByWeight(def => def.CanRunOn(w, h) ? def.weight : 0).CreateAndInitHandler(this);
+                    CurrentSequence = DefDatabase<SequenceDef>.AllDefsListForReading.RandomElementByWeight(def => def.CanRunOn(w, h) ? def.Weight : 0).CreateAndInitHandler(this);
                     Core.Log($"Picked new random sequence: {CurrentSequence.Def.defName} for a {w}x{h} dance floor.");
                 }
                 try
                 {
-                    TickFloor();
+                    bool tickNow = true;
+                    if (!Settings.GameSpeedAffectsMusic)
+                    {
+                        if (tickCounter % (int)Find.TickManager.TickRateMultiplier != 0)
+                            tickNow = false;
+                    }
+
+                    if(tickNow)
+                        TickFloor();
                 }
                 catch (Exception e)
                 {

@@ -2,6 +2,8 @@
 <Defs>
   <Disco.SequenceDef ParentName="DSC_BDS">
     <defName>DSC_S_RandomRippleFade</defName>
+    <label>Ripples</label>
+
     <actions>
 
       <!-- Noise base layer -->
@@ -13,8 +15,9 @@
       <!-- Throw in some music -->
       <li>
         <type>Add</type>
-        <program>DSC_DP_Song_CaramellaGirls_CaramellDansen</program>
         <blend>Ignore</blend>
+        <randomFromGroup>Songs</randomFromGroup>
+        <onEndAction>EndSequence</onEndAction>
       </li>
 
       <!-- With random color cycle -->

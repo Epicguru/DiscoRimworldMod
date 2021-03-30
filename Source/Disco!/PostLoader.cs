@@ -7,6 +7,7 @@ namespace Disco
     {
         static PostLoader()
         {
+            Core.Instance.GetSettings<Settings>();
             Settings.ApplyCustomSongs();
         }
     }

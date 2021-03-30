@@ -2,6 +2,7 @@
 <Defs>
   <Disco.SequenceDef ParentName="DSC_BDS">
     <defName>DSC_S_FadeInPulse</defName>
+    <label>Checkerboard with ripples</label>
     <actions>
 
       <!-- Fade in our initial checkerboard and leave it up for a few seconds-->

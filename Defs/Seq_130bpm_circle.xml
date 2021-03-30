@@ -2,6 +2,8 @@
 <Defs>
   <Disco.SequenceDef ParentName="DSC_BDS">
     <defName>DSC_S_130bpm_circle</defName>
+    <label>Red-and-white beat circle</label>
+    
     <actions>
 
       <!-- Fade in to solid color background -->

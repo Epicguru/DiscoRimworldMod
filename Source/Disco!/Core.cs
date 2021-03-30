@@ -45,15 +45,14 @@ namespace Disco
             }
             finally
             {
-                Log($"Patched {harmony.GetPatchedMethods().EnumerableCount()} methods:\n{string.Join(",\n", harmony.GetPatchedMethods())}");
+                Log(
+                    $"Patched {harmony.GetPatchedMethods().EnumerableCount()} methods:\n{string.Join(",\n", harmony.GetPatchedMethods())}");
             }
 
             // Create MonoBehaviour hook.
             var go = new GameObject("Disco! hook");
             go.AddComponent<UnityHook>();
             Log("Created Unity hook game object.");
-
-            GetSettings<Settings>();
         }
 
         public override string SettingsCategory() => "DSC.ModName".Translate();

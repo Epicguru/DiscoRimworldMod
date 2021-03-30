@@ -2,7 +2,7 @@
 <Defs>
   <Disco.SequenceDef ParentName="DSC_BDS">
     <defName>DSC_S_BadApple</defName>
-
+    <label>[Music] Bad Apple!!</label>
     <weight>0.45</weight>
 
     <actions>

@@ -2,6 +2,7 @@
 <Defs>
   <Disco.SequenceDef ParentName="DSC_BDS">
     <defName>DSC_S_EdgeGlowGmod</defName>
+    <label>GMod dance</label>
     <actions>
 
       <!-- Random song... -->

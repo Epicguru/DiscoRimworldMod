@@ -97,7 +97,7 @@ namespace Disco.Programs
 
             player.isLooping = false;
             player.sendFrameReadyEvents = true;
-            player.playbackSpeed = Find.TickManager.TickRateMultiplier;
+            player.playbackSpeed = Settings.GameSpeedAffectsMusic ? Find.TickManager.TickRateMultiplier : Find.TickManager.Paused ? 0f : 1f;
             player.loopPointReached += OnVideoReachEnd;
             player.frameReady += Player_frameReady;
             player.errorReceived += Player_errorReceived;
@@ -146,7 +146,7 @@ namespace Disco.Programs
                 Remove();
                 return;
             }
-            player.playbackSpeed = Find.TickManager.TickRateMultiplier;
+            player.playbackSpeed = Settings.GameSpeedAffectsMusic ? Find.TickManager.TickRateMultiplier : Find.TickManager.Paused ? 0f : 1f;
             if (!player.isPrepared)
                 return;
 
@@ -158,7 +158,7 @@ namespace Disco.Programs
                 return;
 
             int every = (int) Find.TickManager.TickRateMultiplier;
-            if (TickCounter % every != 0)
+            if (!Settings.GameSpeedAffectsMusic && TickCounter % every != 0)
                 return;
 
             if (audioContainer != null && audioContainer.Source != null)
@@ -167,6 +167,7 @@ namespace Disco.Programs
                 currentAmp += GetSamplesAverage(0);
                 currentAmp += GetSamplesAverage(1);
                 currentAmp /= audioContainer.Source.volume;
+                currentAmp /= Prefs.VolumeGame;
             }
 
             tempTex ??= new Texture2D(tex.width, tex.height, tex.graphicsFormat, TextureCreationFlags.None);
@@ -214,7 +215,7 @@ namespace Disco.Programs
         protected virtual void OnPauseChange(bool paused)
         {
             if (player != null)
-                player.playbackSpeed = paused ? 0 : Find.TickManager.TickRateMultiplier;
+                player.playbackSpeed = paused ? 0 : Settings.GameSpeedAffectsMusic ? Find.TickManager.TickRateMultiplier : 1f;
         }
 
         public override void Dispose()

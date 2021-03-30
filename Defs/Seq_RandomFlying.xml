@@ -2,13 +2,15 @@
 <Defs>
   <Disco.SequenceDef ParentName="DSC_BDS">
     <defName>DSC_S_RandomFlying</defName>
+    <label>Moving lines</label>
+
     <actions>
 
       <!-- Clear -->
       <li>
         <type>Clear</type>
       </li>
-      
+
       <li>
         <type>Add</type>
         <blend>Ignore</blend>
@@ -23,7 +25,7 @@
         <blend>Multiply</blend>
         <program>DSC_DP_Checkerboard_Grayscale</program>
         <addToMemory>true</addToMemory>
-      </li>      
+      </li>
 
       <!-- Change floor color, add a random line, wait until it ends, repeat -->
       <li>

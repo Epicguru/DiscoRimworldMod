@@ -2,6 +2,7 @@
 <Defs>
   <Disco.SequenceDef ParentName="DSC_BDS">
     <defName>DSC_S_FastFlying</defName>
+    <label>Fast moving lines</label>
     <actions>
 
       <!-- Clear -->

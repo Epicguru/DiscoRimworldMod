@@ -19,6 +19,11 @@
     <canOverlapZones>true</canOverlapZones>
     <designationCategory>Joy</designationCategory>
     <hasInteractionCell>true</hasInteractionCell>
+    <costList>
+      <Steel>50</Steel>
+      <ComponentIndustrial>3</ComponentIndustrial>
+      <Gold>10</Gold>
+    </costList>
     <interactionCellOffset>(0,0,-1)</interactionCellOffset>
     <drawOffscreen>true</drawOffscreen>
     <altitudeLayer>Building</altitudeLayer>
@@ -40,7 +45,7 @@
     <building>
       <ai_chillDestination>false</ai_chillDestination>
     </building>
-    <constructionSkillPrerequisite>6</constructionSkillPrerequisite>
+    <constructionSkillPrerequisite>4</constructionSkillPrerequisite>
     <researchPrerequisites>
       <li>Electricity</li>
     </researchPrerequisites>

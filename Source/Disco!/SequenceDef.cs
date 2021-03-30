@@ -7,11 +7,23 @@ namespace Disco
 {
     public class SequenceDef : Def
     {
-        public float weight = 1f;
         public IntVec2? minFloorSize = null;
-
         public List<DiscoSequenceAction> actions = new List<DiscoSequenceAction>();
         public Type handlerType = typeof(SequenceHandler);
+
+        public float Weight
+        {
+            get
+            {
+                float multi = 1f;
+                if (Settings.sequenceWeights != null && Settings.sequenceWeights.TryGetValue(this, out float m))
+                    multi = m;
+
+                return weight * multi;
+            }
+        }
+
+        private float weight = 1f;
 
         public bool CanRunOn(int floorWidth, int floorHeight)
         {
@@ -104,7 +116,7 @@ namespace Disco
 
             if (randomFromGroup != null)
             {
-                return ProgramDef.GetAllInGroup(randomFromGroup).RandomElementByWeight(item => item.groupWeight);
+                return ProgramDef.GetAllInGroup(randomFromGroup).RandomElementByWeight(item => item.GroupWeight);
             }
 
             if (program == null)

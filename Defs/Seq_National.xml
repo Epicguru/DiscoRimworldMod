@@ -2,6 +2,7 @@
 <Defs>
   <Disco.SequenceDef ParentName="DSC_BDS">
     <defName>DSC_S_National</defName>
+    <label>Red-and-red checkerboard with stripes</label>
     <actions>
 
       <!-- Clear -->

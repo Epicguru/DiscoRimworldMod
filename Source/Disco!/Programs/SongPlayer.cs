@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Disco.Audio;
+using RimWorld;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Disco.Audio;
-using RimWorld;
 using UnityEngine;
 using Verse;
 
@@ -106,7 +106,7 @@ namespace Disco.Programs
             source = AudioSourceManager.CreateSource(clip, DJStand.Map);
             source.TargetVolume = volume;
             source.Area = DJStand.FloorBounds;
-            source.Source.pitch = Find.TickManager.TickRateMultiplier;
+            source.Source.pitch = Settings.GameSpeedAffectsMusic ? Find.TickManager.TickRateMultiplier : Find.TickManager.Paused ? 0f : 1f;
             source.Source.Play();
             source.IsPlaying = () => source?.Source != null && !removed;
 
@@ -130,7 +130,7 @@ namespace Disco.Programs
                 return;
             }
 
-            source.Source.pitch = paused ? 0 : Find.TickManager.TickRateMultiplier;
+            source.Source.pitch = paused ? 0 : Settings.GameSpeedAffectsMusic ? Find.TickManager.TickRateMultiplier : 1f;
         }
 
         private float GetSamplesAverage(int channel)
@@ -157,7 +157,7 @@ namespace Disco.Programs
 
             if (source != null && source.Source != null)
             {
-                source.Source.pitch = Find.TickManager.TickRateMultiplier;
+                source.Source.pitch = Settings.GameSpeedAffectsMusic ? Find.TickManager.TickRateMultiplier : Find.TickManager.Paused ? 0f : 1f;
                 bool playing = source.Source.isPlaying;
                 if (!playing && !playingLastFrame)
                     Remove();
@@ -169,6 +169,7 @@ namespace Disco.Programs
                     currentAmp += GetSamplesAverage(0);
                     currentAmp += GetSamplesAverage(1);
                     currentAmp /= source.Source.volume;
+                    currentAmp /= Prefs.VolumeGame;
                 }
             }
         }

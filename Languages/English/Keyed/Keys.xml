@@ -10,6 +10,13 @@
 <DSC.PasteFile>Paste song file or folder path</DSC.PasteFile>
 <DSC.Add>Add</DSC.Add>
 <DSC.AddSongs>Add song(s)</DSC.AddSongs>
+<DSC.AdjustSequenceWeights>Adjust sequence chances. Set chance to 0 to disable.</DSC.AdjustSequenceWeights>
+<DSC.AdjustSongWeights>Adjust built-in song chances. Set chance to 0 to disable.</DSC.AdjustSongWeights>
+<DSC.SongWeightsNote>Note: some songs will still play because they have their own sequence. Disable that sequence to fully remove the song. These sequences will be marked with [Music].</DSC.SongWeightsNote>
+<DSC.WeightReadout>Chance multi.: </DSC.WeightReadout>
+<DSC.Apply>Apply</DSC.Apply>
+<DSC.ChangeSequenceWeightsButton>Change sequence chances...</DSC.ChangeSequenceWeightsButton>
+<DSC.ChangeSongWeightsButton>Change built-in song chances...</DSC.ChangeSongWeightsButton>
 
 <DSC.TriggerNowLabel>Start disco</DSC.TriggerNowLabel>
 <DSC.TriggerNowDesc>Try to start a disco right now. Can only be triggered once every 10 days.</DSC.TriggerNowDesc>
@@ -27,7 +34,7 @@ Good if you don't like the current song/floor effects</DSC.ShuffleDesc>
 <DSC.AtTheDisco>At the disco</DSC.AtTheDisco>
 
 <DSC.SET.DefaultValue>Default value: {0}</DSC.SET.DefaultValue>
-<DSC.SET.Reset>Reset all settings</DSC.SET.Reset>
+<DSC.SET.Reset>Reset</DSC.SET.Reset>
 
 <DSC.SET.UseCustomVolumeLabel>Use custom volume?</DSC.SET.UseCustomVolumeLabel>
 <DSC.SET.UseCustomVolumeDesc>If true, the disco music will use the Custom Volume setting. Otherwise, the music will use the base game music volume.</DSC.SET.UseCustomVolumeDesc>
@@ -51,4 +58,6 @@ The low-pass effect makes it seem like the music is being heard through a wall o
 <DSC.SET.DoReverbDesc>Enables or disables the reverb effect for disco music.
 The reverb effect makes it seem like the music is being played inside a room with a slight echo.</DSC.SET.DoReverbDesc>
 
+<DSC.SET.GameSpeedAffectsMusicLabel>Game speed affects music?</DSC.SET.GameSpeedAffectsMusicLabel>
+<DSC.SET.GameSpeedAffectsMusicDesc>Should game speed affect the tempo and pitch of disco music, as well as the disco floor lights?</DSC.SET.GameSpeedAffectsMusicDesc>
 </LanguageData>
