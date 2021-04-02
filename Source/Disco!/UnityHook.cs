@@ -22,19 +22,18 @@ namespace Disco
 
         private void Update()
         {
-            bool currentPaused = Find.TickManager?.Paused ?? false;
-            if (lastPaused != currentPaused)
+            if (Current.Game != null)
             {
-                OnPauseChange?.Invoke(currentPaused);
-                lastPaused = currentPaused;
+                bool currentPaused = Find.TickManager?.Paused ?? false;
+                if (lastPaused != currentPaused)
+                {
+                    OnPauseChange?.Invoke(currentPaused);
+                    lastPaused = currentPaused;
+                }
             }
 
-            try
-            {
-                bool removeAll = Current.ProgramState != ProgramState.Playing;
-                AudioSourceManager.Tick(removeAll);
-            }
-            catch { }
+            bool removeAll = Current.ProgramState != ProgramState.Playing;
+            AudioSourceManager.Tick(removeAll);
         }
 
         private void OnApplicationQuit()

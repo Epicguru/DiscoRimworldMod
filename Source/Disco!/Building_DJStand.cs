@@ -581,7 +581,7 @@ namespace Disco
                 color.a *= aMulti;
                 Clamp(ref color);
 
-                Map.glowGrid.glowGrid[Map.cellIndices.CellToIndex(cell)] = color;
+                //Map.glowGrid.glowGrid[Map.cellIndices.CellToIndex(cell)] = color;
                 if (color.a != 0f)
                 {
                     block.SetColor("_Color", color);
