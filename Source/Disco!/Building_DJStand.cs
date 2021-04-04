@@ -367,6 +367,7 @@ namespace Disco
             Scribe_Values.Look(ref PickSequenceIfNull, "rf_pickSeqIfNull");
             Scribe_Values.Look(ref NoPowerShutdown, "rf_noPowerShutdown");
             Scribe_Values.Look(ref ticksWithoutPower, "rf_noPowerTicks");
+            Scribe_Values.Look(ref ticksSinceForceStarted, "rf_ticksSinceForceStarted", Mathf.RoundToInt(Settings.ManualTriggerCooldown * 60000) + 100);
         }
 
         private float[] RemapEdgeDistances(float[] rawDistances, out float highest)
