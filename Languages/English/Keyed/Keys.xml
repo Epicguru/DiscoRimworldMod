@@ -4,6 +4,17 @@
 <DSC.ModName>Disco!</DSC.ModName>
 <DSC.NowPlaying>Now playing: {0}</DSC.NowPlaying>
 
+<DSC.ThanksTitle>Thank you for downloading Disco!</DSC.ThanksTitle>
+<DSC.ThanksText>Thank you for installing Disco! I hope you enjoy it.
+
+This may not be relevant to you right now, but if you are feeling depressed, anxious or unsure of yourself, please reach out to a loved one, a friend or someone you trust.
+This does not make you a burden.
+The way you may feel is not final and things will get better.
+
+I wish you a pleasant day and I hope you have fun with my mod.
+Epicguru (James B)</DSC.ThanksText>
+<DSC.DontShowAgain>Don't show again</DSC.DontShowAgain>
+
 <DSC.Format>Detected format: {0}</DSC.Format>
 <DSC.Remove>Remove</DSC.Remove>
 <DSC.RandomChance>Random chance </DSC.RandomChance>

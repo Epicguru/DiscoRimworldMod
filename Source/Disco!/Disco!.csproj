@@ -87,6 +87,7 @@
     <Compile Include="Core.cs" />
     <Compile Include="DiscoDict.cs" />
     <Compile Include="DiscoFloorGlowGrid.cs" />
+    <Compile Include="ImportantMessage.cs" />
     <Compile Include="Patch_MusicManagerPlay_CurVolume.cs" />
     <Compile Include="Patch_GatheringsUtility_AcceptableGameConditionsToStartGathering.cs" />
     <Compile Include="PostLoader.cs" />

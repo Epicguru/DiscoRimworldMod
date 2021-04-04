@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -79,6 +79,8 @@ namespace Disco
         public static Dictionary<SequenceDef, float> sequenceWeights = new Dictionary<SequenceDef, float>();
         public static Dictionary<ProgramDef, float> builtInSongWeights = new Dictionary<ProgramDef, float>();
 
+        internal static bool dontShowAgain;
+
         private static List<CustomFileItem> customFiles = new List<CustomFileItem>();
         private static List<SettingField> fields;
         private static Vector2 scroll;
@@ -95,8 +97,7 @@ namespace Disco
             Scribe_Values.Look(ref ManualTriggerCooldown, "manualTriggerCooldown", 10f);
             Scribe_Values.Look(ref DoLowPass, "doLowPass", true);
             Scribe_Values.Look(ref DoReverb, "doReverb", true);
-            Scribe_Values.Look(ref GameSpeedAffectsMusic, "gameSpeedAffectsMusic", false);
-            Scribe_Values.Look(ref WattsPerFloorTile, "wattsPerFloorTile", 1f);
+            Scribe_Values.Look(ref dontShowAgain, "dontShowAgain", false);
 
             Scribe_Collections.Look(ref customFiles, "filePaths", LookMode.Deep);
             Scribe_Collections.Look(ref sequenceWeights, "sequenceWeights", LookMode.Undefined, LookMode.Value);
