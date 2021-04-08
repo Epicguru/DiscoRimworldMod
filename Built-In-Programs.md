@@ -5,6 +5,7 @@ Tips:
 * See [this file](../blob/master/Defs/DiscoPrograms.xml) for examples of all built-in program classes being used.
 * There are 60 ticks in a second.
 * Colors are represented as vectors: (1, 0, 0.5, 1) means 100% red, 0% green, 50% blue and 100% alpha.
+* Colors are also sometimes written as (255, 0, 150, 255) where 0 is 0% and 255 is 100%.
 
 C# class name | Description | Inputs | Source code
 --- | --- | --- | :---: 
