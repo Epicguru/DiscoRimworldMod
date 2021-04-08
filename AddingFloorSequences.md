@@ -7,13 +7,19 @@ There are two important concepts to understand first:
 * **Disco sequence**: A sequence of disco programs arranged in an interesting way. For example, a sequence could add a checkerboard program, then a color program, and finally a song program.
 
 ## Setting up a mod
-*TODO WRITEME*
+First you must create an extension mod that will add the custom floor programs and sequences.
+Here are the steps:
+1. [Click here to download this mod template.](https://github.com/Epicguru/DiscoRimworldMod/raw/master/Example%20Disco%20Extension%20Mod.zip)
+2. Open up steam, right click on Rimworld. Select `Properties > Local Files > Browse...`.
+3. This will open up the Rimworld folder. Inside this folder there is another called `Mods`.
+4. Extract the downloaded zip file into this `Mods` folder.
+5. You can edit `Example Disco Extension Mod/About/About.xml` and change the mod name, author, description etc.
 
 ## Creating a program
 First, let's create a new program. Here are the steps for that:
 
-Create a new .xml def file in your mod's `Defs` folder. Call it `MyProgram.xml`.
-Open it and copy-paste the following xml code:
+Inside your mod's `Defs` folder, you will find a file called `My Disco Programs.xml`.
+Open this file in a good text editor (like Notepad++ or VSCode). You will see the following:
 ``` XML
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
@@ -29,8 +35,8 @@ Open it and copy-paste the following xml code:
 Here is a breakdown of what's going in this XML:
 * `ParentName="DSC_BDP"` Boilerplate that inherits some useful properties.
 * `<defName>MyDiscoDef</defName>` The def name of your program. Must be unique and not contain spaces.
-* `<programClass>Disco.Programs.Solid</programClass>` Tells *Disco!* what C# class to use for this program. In this case, we are using the `Solid` class, which simply displays a single solid color.
-* `<inputs>` A list of inputs for the program class. In this case since we are using the `Solid` class we want to tell the class what color to display.
+* `<programClass>Disco.Programs.Solid</programClass>` Tells *Disco!* what C# class to use for this program. In this case, we are using the *Solid* class, which simply displays a single solid color.
+* `<inputs>` A list of inputs for the program class. In this case since we are using the *Solid* class we want to tell the class what color to display.
 * `<color>(0, 1, 0, 1)</color>` We are assigning the value *(0, 1, 0, 1)* to the input field *color*. *(0, 1, 0, 1)* means green; (r, g, b, a).
 
 You can now test this program out. Save your file, open up Rimworld. Enable *Development mode*. Make sure that your mod is active in the Mods menu, and check that there are no errors in the log.
