@@ -7,10 +7,10 @@
     <description>A fully equipped DJ stand. All it needs is a disco floor and you're ready for a wild party!</description>
     <thingClass>Disco.Building_DJStand</thingClass>
     <graphicData>
-      <texPath>DSC/Buildings/ForgeIdle</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <drawSize>(1,1)</drawSize>
-      <!-- <drawOffset>(0,0,0.5)</drawOffset> -->
+      <texPath>DSC/Buildings/Stand</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(1.6,1.6)</drawSize>
+      <drawOffset>(0,0,0)</drawOffset>
     </graphicData>
     <drawerType>RealtimeOnly</drawerType>
     <category>Building</category>
