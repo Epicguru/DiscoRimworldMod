@@ -34,7 +34,7 @@ Open this file in a good text editor (like Notepad++ or VSCode). You will see th
 Here is a breakdown of what's going in this XML:
 * `ParentName="DSC_BDP"` Boilerplate that inherits some useful properties.
 * `<defName>MyDiscoDef</defName>` The def name of your program. Must be unique and not contain spaces.
-* `<programClass>Disco.Programs.Solid</programClass>` Tells *Disco!* what C# class to use for this program. In this case, we are using the *Solid* class, which simply displays a single solid color. See [this help page](../blob/master/Built-In-Programs.md) for a list of most program classes and their use.
+* `<programClass>Disco.Programs.Solid</programClass>` Tells *Disco!* what C# class to use for this program. In this case, we are using the *Solid* class, which simply displays a single solid color. See [this help page](./blob/master/Built-In-Programs.md) for a list of most program classes and their use.
 * `<inputs>` A list of inputs for the program class. In this case since we are using the *Solid* class we want to tell the class what color to display.
 * `<color>(0, 1, 0, 1)</color>` We are assigning the value *(0, 1, 0, 1)* to the input field *color*. *(0, 1, 0, 1)* means green; (r, g, b, a).
 
