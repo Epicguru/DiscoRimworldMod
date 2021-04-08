@@ -16,8 +16,8 @@ namespace Disco
 
                 try
                 {
-                    if (!Settings.dontShowAgain)
-                        ShowMsg();
+                    //if (!Settings.dontShowAgain)
+                    //    ShowMsg();
                 }
                 catch (Exception e)
                 {
