@@ -13,11 +13,11 @@ namespace Disco
         {
             static void Prefix()
             {
-
+                Core.Instance.GetSettings<Settings>();
                 try
                 {
-                    //if (!Settings.dontShowAgain)
-                    //    ShowMsg();
+                    if (!Settings.dontShowAgain)
+                        ShowMsg();
                 }
                 catch (Exception e)
                 {
