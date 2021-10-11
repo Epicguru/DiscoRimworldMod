@@ -8,14 +8,16 @@ namespace Disco
 {
     public class LordJob_Joinable_Disco : LordJob_Joinable_Gathering
     {
+#if V12
+        public int DurationTicks => this.durationTicks;
         private int durationTicks;
+#endif
 
         public override bool AllowStartNewGatherings => false;
         protected virtual ThoughtDef AttendeeThought => DiscoDefOf.DSC_AttendedDiscoThought;
         protected virtual TaleDef AttendeeTale => DiscoDefOf.DSC_AttendedDiscoTale;
         protected virtual ThoughtDef OrganizerThought => DiscoDefOf.DSC_AttendedDiscoThought;
         protected virtual TaleDef OrganizerTale => DiscoDefOf.DSC_AttendedDiscoTale;
-        public int DurationTicks => this.durationTicks;
         public Building_DJStand DJStand;
 
         public LordJob_Joinable_Disco() { }
@@ -68,8 +70,9 @@ namespace Disco
             return base.ShouldBeCalledOff() || (DJStand?.NoPowerShutdown ?? true);
         }
 
+#if V12
         protected virtual Trigger_TicksPassed GetTimeoutTrigger() => new Trigger_TicksPassed(this.durationTicks);
-
+#endif
         private void ApplyOutcome(LordToil_Disco toil)
         {
             List<Pawn> ownedPawns = this.lord.ownedPawns;

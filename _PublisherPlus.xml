@@ -1,11 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Configuration>
   <Excluded>
-    <exclude>E:\Steam Games\steamapps\common\RimWorld\Mods\Disco!\.git</exclude>
-    <exclude>E:\Steam Games\steamapps\common\RimWorld\Mods\Disco!\Assemblies\ICSharpCode.SharpZipLib.pdb</exclude>
-    <exclude>E:\Steam Games\steamapps\common\RimWorld\Mods\Disco!\Assemblies\ICSharpCode.SharpZipLib.xml</exclude>
-    <exclude>E:\Steam Games\steamapps\common\RimWorld\Mods\Disco!\Assemblies\VideoTool.pdb</exclude>
-    <exclude>E:\Steam Games\steamapps\common\RimWorld\Mods\Disco!\Example Disco Extension Mod.zip</exclude>
-    <exclude>E:\Steam Games\steamapps\common\RimWorld\Mods\Disco!\Source</exclude>
+    <exclude>C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Disco!\.git</exclude>
+    <exclude>C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Disco!\Source</exclude>
   </Excluded>
 </Configuration>

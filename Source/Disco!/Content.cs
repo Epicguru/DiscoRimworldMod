@@ -22,7 +22,7 @@ namespace Disco
             {
                 return GraphicDatabase.Get(gd.graphicClass, path, DiscoDefOf.Transparent.Shader, size, Color.white, Color.white, gd, gd.shaderParameters);
             }
-            DiscoFloorGlowGraphic = MakeUnlit("DSC/Effects/FloorGlow", Vector2.one);
+            DiscoFloorGlowGraphic = MakeUnlit("DSC/Effects/FloorGlow", Vector2.one); 
         }
     }
 }
