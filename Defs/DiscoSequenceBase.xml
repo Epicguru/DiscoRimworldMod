@@ -3,5 +3,6 @@
   <Disco.SequenceDef Name="DSC_BDS" Abstract="true">
     <label>disco sequence</label>
     <description>If you are reading this I wish you a very pleasant day.</description>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
   </Disco.SequenceDef>
 </Defs>
