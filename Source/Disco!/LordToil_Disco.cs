@@ -11,7 +11,7 @@ namespace Disco
 
         private LordToilData_Disco Data => (LordToilData_Disco)data;
 
-        public LordToil_Disco(IntVec3 spot, GatheringDef gatheringDef, float joyPerTick = 3.5E-05f)
+        public LordToil_Disco(IntVec3 spot, GatheringDef gatheringDef, float joyPerTick = DefaultJoyPerTick)
             : base(spot, gatheringDef)
         {
             this.joyPerTick = joyPerTick;
@@ -21,13 +21,19 @@ namespace Disco
         public override void LordToilTick()
         {
             List<Pawn> ownedPawns = lord.ownedPawns;
+            if (ownedPawns == null)
+                return;
+
             for (int index = 0; index < ownedPawns.Count; ++index)
             {
-                if (GatheringsUtility.InGatheringArea(ownedPawns[index].Position, spot, Map))
+                var pawn = ownedPawns[index];
+                if (pawn == null)
+                    continue;
+
+                if (GatheringsUtility.InGatheringArea(pawn.Position, spot, Map))
                 {
-                    ownedPawns[index].needs.joy.GainJoy(joyPerTick, JoyKindDefOf.Social);
-                    if (!Data.wasPresent.Contains(ownedPawns[index]))
-                        Data.wasPresent.Add(ownedPawns[index]);
+                    ownedPawns[index].needs?.joy?.GainJoy(joyPerTick, JoyKindDefOf.Social);
+                    Data.wasPresent.Add(ownedPawns[index]);
                 }
             }
         }

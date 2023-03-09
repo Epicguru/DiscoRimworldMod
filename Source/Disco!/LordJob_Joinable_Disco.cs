@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
-using RimWorld;
-using UnityEngine;
+﻿using RimWorld;
+using System.Collections.Generic;
 using Verse;
 using Verse.AI.Group;
 
@@ -84,12 +83,12 @@ namespace Disco
                 bool flag = key == organizer;
                 if (data.wasPresent.Contains(key))
                 {
-                    if (ownedPawns[index].needs.mood != null)
+                    if (ownedPawns[index].needs?.mood != null)
                     {
                         ThoughtDef def = flag ? OrganizerThought : AttendeeThought;
                         Thought_Memory newThought = (Thought_Memory)ThoughtMaker.MakeThought(def);
                         newThought.moodPowerFactor = 1;
-                        ownedPawns[index].needs.mood.thoughts.memories.TryGainMemory(newThought);
+                        ownedPawns[index].needs?.mood?.thoughts?.memories?.TryGainMemory(newThought);
                         given++;
                     }
                     TaleRecorder.RecordTale(flag ? OrganizerTale : AttendeeTale, ownedPawns[index], organizer);
