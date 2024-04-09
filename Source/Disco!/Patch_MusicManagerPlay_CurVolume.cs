@@ -1,6 +1,9 @@
 ﻿using HarmonyLib;
 using RimWorld;
 using Verse;
+#if V15
+using LudeonTK;
+#endif
 
 namespace Disco
 {

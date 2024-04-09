@@ -2,6 +2,9 @@
 using Disco.Audio;
 using UnityEngine;
 using Verse;
+#if V15
+using LudeonTK;
+#endif
 
 namespace Disco
 {

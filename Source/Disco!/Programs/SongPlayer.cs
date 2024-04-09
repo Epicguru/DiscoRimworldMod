@@ -7,6 +7,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
+#if V15
+using LudeonTK;
+#endif
 
 namespace Disco.Programs
 {

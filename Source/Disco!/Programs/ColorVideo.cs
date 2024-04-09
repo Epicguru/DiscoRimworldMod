@@ -6,6 +6,9 @@ using UnityEngine.Experimental.Rendering;
 using UnityEngine.Video;
 using Verse;
 using Object = UnityEngine.Object;
+#if V15
+using LudeonTK;
+#endif
 
 namespace Disco.Programs
 {

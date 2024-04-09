@@ -6,6 +6,9 @@ using Disco.Programs;
 using RimWorld;
 using UnityEngine;
 using Verse;
+#if V15
+using LudeonTK;
+#endif
 
 namespace Disco
 {
@@ -342,6 +345,15 @@ namespace Disco
             }
         }
 
+        private IntVec3 GetBottomLeft(in CellRect rect)
+        {
+#if V15
+            return rect.Min;
+#else
+            return rect.BottomLeft;
+#endif
+        }
+
         public float GetCellDistanceFromEdge(IntVec3 cell, bool inverted = false)
         {
             if (!FloorBounds.Contains(cell))
@@ -350,7 +362,7 @@ namespace Disco
             if (edgeDistances == null)
                 return -1;
 
-            cell -= FloorBounds.BottomLeft;
+            cell -= GetBottomLeft(FloorBounds);
             int index = cell.x + cell.z * FloorBounds.Width;
             if (index < 0 || index >= edgeDistances.Length)
                 return -1;
@@ -382,7 +394,7 @@ namespace Disco
                 return null;
             }
 
-            IntVec3 boundsMin = bounds.BottomLeft;
+            IntVec3 boundsMin = GetBottomLeft(bounds);
 
             float[] forBounds = new float[bounds.Area];
             for (int i = 0; i < forBounds.Length; i++)
@@ -553,6 +565,21 @@ namespace Disco
             }
         }
 
+#if V15
+
+        public override void DynamicDrawPhaseAt(DrawPhase phase, Vector3 drawLoc, bool flip = false)
+        {
+            base.DynamicDrawPhaseAt(phase, drawLoc, flip);
+
+            if (phase != DrawPhase.Draw)
+                return;
+
+            if (glowGrid != null && floorCells.Count >= 2)
+                DrawFloor();
+        }
+
+#else
+
         public override void Draw()
         {
             base.Draw();
@@ -560,6 +587,8 @@ namespace Disco
             if (glowGrid != null && floorCells.Count >= 2)
                 DrawFloor();
         }
+
+#endif
 
         public void DrawFloor()
         {
@@ -628,7 +657,11 @@ namespace Disco
                 },
                 defaultLabel = "DSC.TriggerNowLabel".Translate(),
                 defaultDesc = "DSC.TriggerNowDesc".Translate(),
+#if V15
+                Disabled = onCooldown || !canStartNow || noPower,
+#else
                 disabled = onCooldown || !canStartNow || noPower,
+#endif
                 disabledReason = noPower ? "DSC.TriggerNowDisabledPower".Translate() : onCooldown ? "DSC.TriggerNowDisabledCooldown".Translate() : "DSC.TriggerNowDisabledOther".Translate(),
                 icon = Content.StartIcon,
                 defaultIconColor = Color.yellow

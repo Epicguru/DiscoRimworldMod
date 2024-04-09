@@ -8,6 +8,9 @@ using Disco.Programs;
 using RimWorld;
 using UnityEngine;
 using Verse;
+#if V15
+using LudeonTK;
+#endif
 
 namespace Disco
 {
