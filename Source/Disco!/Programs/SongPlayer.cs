@@ -7,7 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
-#if V15
+#if V15 || V16
 using LudeonTK;
 #endif
 

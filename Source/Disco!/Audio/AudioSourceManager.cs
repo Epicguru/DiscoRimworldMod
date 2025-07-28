@@ -5,7 +5,7 @@ using System.Text;
 using RimWorld.Planet;
 using UnityEngine;
 using Verse;
-#if V15
+#if V15 || V16
 using LudeonTK;
 #endif
 
@@ -124,7 +124,11 @@ namespace Disco.Audio
                 return true;
 
             int currMapIndex = Find.CurrentMap?.uniqueID ?? -1;
+            #if V16
+            bool isOnCurrentMap = currMapIndex == item.MapId && WorldRendererUtility.CurrentWorldRenderMode == WorldRenderMode.None;
+            #else
             bool isOnCurrentMap = currMapIndex == item.MapId && !WorldRendererUtility.WorldRenderedNow;
+            #endif
 
             if (item.LowPass != null)
             {

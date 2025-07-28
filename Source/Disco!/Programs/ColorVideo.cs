@@ -6,7 +6,7 @@ using UnityEngine.Experimental.Rendering;
 using UnityEngine.Video;
 using Verse;
 using Object = UnityEngine.Object;
-#if V15
+#if V15 || V16
 using LudeonTK;
 #endif
 

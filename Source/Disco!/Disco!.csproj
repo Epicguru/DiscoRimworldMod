@@ -8,14 +8,15 @@
     <LangVersion>preview</LangVersion>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-    <Configurations>v1.2;v1.3;v1.4;v1.5</Configurations>
+    <Configurations>v1.2;v1.3;v1.4;v1.5;v1.6</Configurations>
     <AssemblyName>EG_Disco</AssemblyName>
     <RootNamespace>Disco</RootNamespace>
+    <Platforms>AnyCPU</Platforms>
   </PropertyGroup>
 
   <!-- Libraries used regardless of target version -->
   <ItemGroup>
-    <PackageReference Include="Lib.Harmony" Version="2.3.3" />
+    <PackageReference Include="Lib.Harmony" Version="2.3.6" ExcludeAssets="runtime" />
     <ProjectReference Include="..\VideoTool\VideoTool.csproj" />
   </ItemGroup>
 
@@ -36,7 +37,12 @@
   
   <!-- _____ 1.5 _____ -->
   <ItemGroup Condition="'$(Configuration)|$(Platform)'=='v1.5|AnyCPU'">
-    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.5.4060-beta" />
+    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.5.4409" />
+  </ItemGroup>
+
+  <!-- _____ 1.6 _____ -->
+  <ItemGroup Condition="'$(Configuration)|$(Platform)'=='v1.6|AnyCPU'">
+    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.4528" />
   </ItemGroup>
 
   <!-- Outputs -->
@@ -63,6 +69,12 @@
     <OutputPath>..\..\1.5\Assemblies\</OutputPath>
     <Optimize>true</Optimize>
     <DefineConstants>TRACE;V15</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='v1.6|AnyCPU'">
+    <DebugType>none</DebugType>
+    <OutputPath>..\..\1.6\Assemblies\</OutputPath>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE;V16</DefineConstants>
   </PropertyGroup>
 
 </Project>

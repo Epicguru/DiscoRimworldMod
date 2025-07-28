@@ -1,7 +1,7 @@
 ﻿using HarmonyLib;
 using RimWorld;
 using Verse;
-#if V15
+#if V15 || V16
 using LudeonTK;
 #endif
 

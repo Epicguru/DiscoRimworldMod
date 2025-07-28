@@ -6,7 +6,7 @@ using Disco.Programs;
 using RimWorld;
 using UnityEngine;
 using Verse;
-#if V15
+#if V15 || V16
 using LudeonTK;
 #endif
 
@@ -152,7 +152,11 @@ namespace Disco
             SetProgramStack(null);
         }
 
+        #if !V16
         public override void Tick()
+        #else
+        protected override void Tick()
+        #endif
         {
             base.Tick();
 
@@ -347,7 +351,7 @@ namespace Disco
 
         private IntVec3 GetBottomLeft(in CellRect rect)
         {
-#if V15
+#if V15 || V16
             return rect.Min;
 #else
             return rect.BottomLeft;
@@ -565,7 +569,7 @@ namespace Disco
             }
         }
 
-#if V15
+#if V15 || V16
 
         public override void DynamicDrawPhaseAt(DrawPhase phase, Vector3 drawLoc, bool flip = false)
         {
@@ -657,7 +661,7 @@ namespace Disco
                 },
                 defaultLabel = "DSC.TriggerNowLabel".Translate(),
                 defaultDesc = "DSC.TriggerNowDesc".Translate(),
-#if V15
+#if V15 || V16
                 Disabled = onCooldown || !canStartNow || noPower,
 #else
                 disabled = onCooldown || !canStartNow || noPower,
